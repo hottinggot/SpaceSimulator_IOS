@@ -8,13 +8,15 @@
 import UIKit
 import CoreData
 
+import RxKakaoSDKCommon
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        RxKakaoSDKCommon.initSDK(appKey: "1b0c47ff5a86ac6ba28be58895f5f89d")
         return true
     }
 
