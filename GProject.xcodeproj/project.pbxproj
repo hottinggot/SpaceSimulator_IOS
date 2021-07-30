@@ -12,6 +12,7 @@
 		0417652A26A51F7E00E2C4F7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417652926A51F7E00E2C4F7 /* DetailViewController.swift */; };
 		0417652C26A6D72600E2C4F7 /* TokenUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417652B26A6D72600E2C4F7 /* TokenUtils.swift */; };
 		0417653426A86DEC00E2C4F7 /* GProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417653326A86DEC00E2C4F7 /* GProjectTests.swift */; };
+		0417653C26B38E5E00E2C4F7 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417653B26B38E5E00E2C4F7 /* Table.swift */; };
 		04435F31269B16EF00030944 /* kakao_login_medium_narrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04435F30269B16EF00030944 /* kakao_login_medium_narrow.png */; };
 		04435F33269B25D200030944 /* kakao_signup_medium_narrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04435F32269B25D200030944 /* kakao_signup_medium_narrow.png */; };
 		04435F35269B56F700030944 /* BoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04435F34269B56F700030944 /* BoardListViewController.swift */; };
@@ -50,6 +51,7 @@
 		0417653126A86DEC00E2C4F7 /* GProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0417653326A86DEC00E2C4F7 /* GProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GProjectTests.swift; sourceTree = "<group>"; };
 		0417653526A86DEC00E2C4F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0417653B26B38E5E00E2C4F7 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		04435F30269B16EF00030944 /* kakao_login_medium_narrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakao_login_medium_narrow.png; sourceTree = "<group>"; };
 		04435F32269B25D200030944 /* kakao_signup_medium_narrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakao_signup_medium_narrow.png; sourceTree = "<group>"; };
 		04435F34269B56F700030944 /* BoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			children = (
 				04E5A11F26A037FF000DAD7F /* User.swift */,
 				04E5A12326A03ABE000DAD7F /* Board.swift */,
+				0417653B26B38E5E00E2C4F7 /* Table.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				04E5A13026A04B7F000DAD7F /* LoginViewModel.swift in Sources */,
 				0449D7F6269AF03700BCC781 /* AppDelegate.swift in Sources */,
 				04E5A12026A037FF000DAD7F /* User.swift in Sources */,
+				0417653C26B38E5E00E2C4F7 /* Table.swift in Sources */,
 				0449D7F8269AF03700BCC781 /* SceneDelegate.swift in Sources */,
 				04435F35269B56F700030944 /* BoardListViewController.swift in Sources */,
 				04E5A12426A03ABE000DAD7F /* Board.swift in Sources */,

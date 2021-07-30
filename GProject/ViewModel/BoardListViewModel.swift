@@ -13,10 +13,16 @@ import RxCocoa
 class BoardListViewModel {
     
     let disposeBag = DisposeBag()
-    var boardList = PublishSubject<[Board]>()
-    let service = DataService()
+    //var boardList = PublishSubject<[Board]>()
+    var boardList = BehaviorRelay<[Board]>(value: [])
+    
+    private let service : DataServiceType!
+    init(service : DataServiceType = DataService()) {
+        self.service = service
+    }
     
     var user: UserInfo?
+    var pageNum: Int = 0
     
     struct Input {
         let click: ControlEvent<Void>
@@ -25,14 +31,19 @@ class BoardListViewModel {
     struct TableInput {
         let click: ControlEvent<Board>
     }
+    
+    struct TableScrollInput {
+        let scroll: ControlEvent<Void>
+    }
  
     func refreshBoardList() {
-        service.getBoardList()
+        self.pageNum = 0
+        service.getBoardList(pageNum: pageNum)
             .bind { boardList in
-                self.boardList.onNext(boardList)
+                self.boardList.accept(boardList)
+                //self.boardList.onNext(boardList)
             }
             .disposed(by: disposeBag)
-
     }
     
     func bindButton(input: Input, page: UIViewController) {
@@ -42,12 +53,33 @@ class BoardListViewModel {
         .disposed(by: disposeBag)
     }
     
-    func bindTable(input: TableInput, page: UIViewController) {
+    func bindTableClick(input: TableInput, page: UIViewController) {
         input.click
             .subscribe(onNext: { item in
                 self.moveToDetailPage(page: page, item: item)
             })
               .disposed(by: disposeBag)
+    }
+    
+    func bindTableScroll(input: TableScrollInput, tableViewSize: Table) {
+        input.scroll
+            .bind {
+                let pagingStandard = tableViewSize.contentHeight - tableViewSize.tableViewHeight
+                if pagingStandard + 100 > 0 && tableViewSize.offsetY > pagingStandard - 100 {
+                    self.pageNum += 1
+                    self.paging(pageNum: self.pageNum)
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func paging(pageNum: Int) {
+        service.getBoardList(pageNum: pageNum)
+            .bind { list in
+                let originalList = self.boardList.value
+                self.boardList.accept(originalList + list)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func moveToComposePage(page: UIViewController) {

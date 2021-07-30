@@ -18,7 +18,7 @@ protocol DataServiceType {
     func createBoard(title: String, content: String)
 
     @discardableResult
-    func getBoardList(page: Int) -> Observable<[Board]>
+    func getBoardList(pageNum: Int) -> Observable<[Board]>
 
     func updateBoard(board: Board)
 

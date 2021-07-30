@@ -16,7 +16,6 @@ class BoardListViewController: UIViewController {
     let nextBtn = UIButton()
     lazy var pagingBtnStack: UIStackView = {
         let stackH = UIStackView(arrangedSubviews: [self.prevButton, self.nextBtn])
-        stackH.translatesAutoresizingMaskIntoConstraints = false
         stackH.axis = .horizontal
         stackH.spacing = 10
         stackH.alignment = .fill
@@ -45,7 +44,7 @@ class BoardListViewController: UIViewController {
     private func setView() {
         self.addComposeButton()
         self.addTableView()
-        self.addPagingBtnStack()
+        //self.addPagingBtnStack()
     }
     
     private func bindViewModel() {
@@ -62,7 +61,12 @@ class BoardListViewController: UIViewController {
         
         // 목록 클릭 이벤트
         let tableViewClick = BoardListViewModel.TableInput(click: tableView.rx.modelSelected(Board.self))
-        viewModel.bindTable(input: tableViewClick, page: self)
+        viewModel.bindTableClick(input: tableViewClick, page: self)
+        
+        let tableViewScroll = BoardListViewModel.TableScrollInput(scroll: tableView.rx.didScroll)
+        let tableViewSize = Table(offsetY: tableView.contentOffset.y, contentHeight: tableView.contentSize.height, tableViewHeight: tableView.frame.size.height)
+        viewModel.bindTableScroll(input: tableViewScroll, tableViewSize: tableViewSize)
+        
 
     }
     

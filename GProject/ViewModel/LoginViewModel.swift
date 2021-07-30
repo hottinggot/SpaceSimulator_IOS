@@ -18,8 +18,8 @@ import RxKakaoSDKUser
 class LoginViewModel {
 
     let disposeBag = DisposeBag()
-    let service = DataService()
     
+    private let service : DataServiceType!
     var accessToken = PublishSubject<String>()
     var userNickname = PublishSubject<String>()
     
@@ -32,7 +32,8 @@ class LoginViewModel {
         let click: ControlEvent<Void>
     }
     
-    init() {
+    init(service : DataServiceType = DataService()) {
+        self.service = service
         // jwtToken 관찰
         self.jwtToken
             .bind { token in

@@ -19,7 +19,6 @@ class DetailViewController: UIViewController {
     
     lazy var buttonStack: UIStackView = {
         let stackH = UIStackView(arrangedSubviews: [self.updateButton, self.deleteButton])
-        stackH.translatesAutoresizingMaskIntoConstraints = false
         stackH.axis = .horizontal
         stackH.spacing = 10
         stackH.alignment = .fill

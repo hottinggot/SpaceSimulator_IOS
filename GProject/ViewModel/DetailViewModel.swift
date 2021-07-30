@@ -14,7 +14,10 @@ class DetailViewModel {
     var board: Board?
     var user: UserInfo?
     
-    let service = DataService()
+    private let service : DataServiceType!
+    init(service : DataServiceType = DataService()) {
+        self.service = service
+    }
     let disposeBag = DisposeBag()
     
     struct Input {
@@ -25,8 +28,6 @@ class DetailViewModel {
         input.click
             .bind {
                 self.moveToComposeView(page: page)
-                
-                
             }
             .disposed(by: disposeBag)
     }

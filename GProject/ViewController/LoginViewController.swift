@@ -28,7 +28,6 @@ class LoginViewController: UIViewController {
     
     lazy var stackView: UIStackView = {
         let stackV = UIStackView(arrangedSubviews: [self.kakaoLoginBtn, self.kakaoRegisterBtn])
-        stackV.translatesAutoresizingMaskIntoConstraints = false
         stackV.axis = .vertical
         stackV.spacing = 20
         stackV.alignment = .fill

@@ -59,10 +59,10 @@ class DataService: DataServiceType {
     }
 
     @discardableResult
-    func getBoardList(page: Int = 0) -> Observable<[Board]> {
+    func getBoardList(pageNum: Int) -> Observable<[Board]> {
         urlString = BASE_URL.appending("/community")
         let jwt = tk.readJwt()
-        let param = ["page": page]
+        let param = ["page": pageNum]
         guard let jwt = jwt else {
             print("JWT NIL")
             return Observable.just([]).asObservable()
@@ -80,7 +80,6 @@ class DataService: DataServiceType {
                 
                 do{
                 let boardList = try JSONDecoder().decode([Board].self, from: str.data(using: .utf8)!)
-
                     return boardList
                 } catch{ print(error)}
                 return []
@@ -132,28 +131,15 @@ class DataService: DataServiceType {
         }
         
         let params = ["communityId": communityId]
-
-        var request = URLRequest(url: URL(string: urlString)!)
-        request.httpMethod = "DELETE"
-        request.timeoutInterval = 10
-        request.headers = ["Content-Type":"application/json", "Accept":"application/json", "Authorization": jwt]
-        
-        do {
-            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
-            
-        } catch {
-            print("http Body Error")
-        }
                 
         // 응답 받지 않음
-        AF.request(request as URLRequestConvertible)
-            .responseJSON() { res in
-                switch res.result {
-                         case .success:
-                            print("DEL RES: ", String(data: res.data!, encoding: .utf8))
-                         case .failure(let error):
-                             print(error)
-                         }
+        AF.request(urlString,
+                   method: .delete,
+                   parameters: params,
+                   encoding: URLEncoding.queryString,
+                   headers: ["Content-Type":"application/json", "Accept":"application/json", "Authorization": jwt])
+            .responseJSON() { _ in
+                
             }
     }
     

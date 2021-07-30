@@ -13,7 +13,12 @@ class ComposeViewModel {
     
     var title: String?
     var content: String?
-    let service = DataService()
+    
+    private let service : DataServiceType!
+    init(service : DataServiceType = DataService()) {
+        self.service = service
+    }
+    
     let disposeBag = DisposeBag()
     
     var board: Board?

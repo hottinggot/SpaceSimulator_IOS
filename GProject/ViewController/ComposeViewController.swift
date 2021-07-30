@@ -18,7 +18,6 @@ class ComposeViewController: UIViewController {
     
     lazy var buttonStack: UIStackView = {
         let stackH = UIStackView(arrangedSubviews: [self.saveButton, self.cancelButton])
-        stackH.translatesAutoresizingMaskIntoConstraints = false
         stackH.axis = .horizontal
         stackH.spacing = 10
         stackH.alignment = .fill
