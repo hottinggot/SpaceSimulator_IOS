@@ -32,8 +32,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let mainViewController = LoginViewController()
-        window?.rootViewController = mainViewController
+        let mainViewController = ComposeViewController()
+        let navigationVC = UINavigationController(rootViewController: mainViewController)
+        navigationVC.modalPresentationStyle = .fullScreen
+        navigationVC.interactivePopGestureRecognizer?.isEnabled = true
+        navigationVC.isNavigationBarHidden = true
+        window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
         
     }

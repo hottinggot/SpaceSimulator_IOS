@@ -20,72 +20,114 @@ class LoginViewModel {
     let disposeBag = DisposeBag()
     
     private let service : DataServiceType!
+    
     var accessToken = PublishSubject<String>()
     var userNickname = PublishSubject<String>()
     
-    var jwtToken = PublishSubject<String>()
-    var userInfo = PublishSubject<UserInfo>()
+    var requestingUser = UserInfo(email: "", password: "", nickname: "", birth: "")
+
+    var userData = PublishSubject<UserData>()
     
-    var validation = PublishSubject<Bool>()
+    var validation = false
+    
+    let emailTextRelay = BehaviorRelay<String>(value: "")
+    let passwdTextRealy = BehaviorRelay<String>(value: "")
+    
     
     struct Input {
         let click: ControlEvent<Void>
     }
     
+    struct FormInput {
+        let change: ControlProperty<String?>
+    }
+    
     init(service : DataServiceType = DataService()) {
         self.service = service
-        // jwtToken 관찰
-        self.jwtToken
-            .bind { token in
-                if token != "" {
-                    
-                    self.service.getUserInfo(jwtToken: token)
-                        .bind {user in
-                            print("USER: ", user.nickname)
-                            self.userInfo.onNext(user)
+ 
+    }
+    
+    func setFormValidation() {
+        isFormValid()
+            .bind { v in
+                self.validation = v
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func isFormValid() -> Observable<Bool> {
+        
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        
+        return Observable
+            .combineLatest(emailTextRelay, passwdTextRealy)
+            .map { email, passwd in
+                if emailTest.evaluate(with: email) && passwd.count > 6 {
+                    self.requestingUser.email = email
+                    self.requestingUser.password = passwd
+                    return true
+                } else {
+                    return false
+                }
+            }
+    }
+    
+    func requestLogin() {
+        
+        service.loginUser(userInfo: requestingUser)
+            .bind { res in
+                if res {
+                    self.service.getMe()
+                        .bind { user in
+                            self.userData.onNext(user)
                         }
                         .disposed(by: self.disposeBag)
-                } else {
-                    print("이미 회원가입이 되어있습니다.")
-                    self.setValidation(isValid: false)
+                    
                 }
             }
             .disposed(by: disposeBag)
+
+    }
+    
+   
+    
+    private func onBind(type: LoginType, userInfo: UserInfo) {
+//        switch type {
+//        case .login:
+//            //원래 서비스에 userInfo 보내어 응답 받아야 함
+//            if validateForm(userInfo: userInfo) {
+//                self.userInfo.onNext(userInfo)
+//            } else {
+//                print("validation false")
+//            }
+//            
+//        default:
+//            print("not a login type")
+//        }
         
-        // userInfo 관찰
-        self.userInfo
-            .bind {_ in
-                self.setValidation(isValid: true)
-            }
-            .disposed(by: disposeBag)
-    }
-    
-    func bindButton(input: Input, type: LoginType) {
-        input.click
-            .bind {
-                
-                self.onBind(type: type)
-            }
-            .disposed(by: disposeBag)
-    }
-    
-    func onBind(type: LoginType) {
+//        switch type {
+//        case .register:
+//            service.addUser(userInfo: userInfo)
+//        default:
+//            <#code#>
+//        }
         // Kakao api에서 access token과 me를 모두 받았는지 관찰
-        Observable.combineLatest(accessToken, userNickname)
-            .bind { (token, nickname) in
-                // 모두 받았다면 서버에 정보 보냄
-                self.service.postAccessTokenNUserNickname(accessToken: token, nickname: nickname, type: type)
-                    .bind { jwtToken in
-                        
-                        //JWT Token을 받았는자 관찰
-                        self.jwtToken.onNext(jwtToken)
-                    }
-                    .disposed(by: self.disposeBag)
-            }
-            .disposed(by:disposeBag)
-        
-        // Kakao 요청
-        KakaoApi()
+//        Observable.combineLatest(accessToken, userNickname)
+//            .bind { (token, nickname) in
+//                // 모두 받았다면 서버에 정보 보냄
+//                self.service.postAccessTokenNUserNickname(accessToken: token, nickname: nickname, type: type)
+//                    .bind { jwtToken in
+//
+//                        //JWT Token을 받았는자 관찰
+//                        self.jwtToken.onNext(jwtToken)
+//                    }
+//                    .disposed(by: self.disposeBag)
+//            }
+//            .disposed(by:disposeBag)
+//
+//        // Kakao 요청
+//        KakaoApi()
     }
         
     func KakaoApi() {
@@ -112,24 +154,6 @@ class LoginViewModel {
                 print(error)
             })
             .disposed(by: disposeBag)
-    }
-    
-    func setValidation(isValid: Bool) {
-        self.validation.onNext(isValid)
-    }
-    
-    //화면 전환
-    func moveToListPage(page: UIViewController, userInfo: UserInfo) {
-        let listPage: BoardListViewController = BoardListViewController()
-        
-        //listPage.user = userInfo
-        listPage.viewModel.user = userInfo
-        let navigationVC = UINavigationController(rootViewController: listPage)
-        listPage.title = "게시글"
-        navigationVC.navigationBar.prefersLargeTitles = true
-        navigationVC.modalPresentationStyle = .fullScreen
-        
-        page.present(navigationVC, animated: true, completion: nil)
     }
     
     
