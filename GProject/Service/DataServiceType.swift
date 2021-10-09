@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import Alamofire
 
 enum LoginType {
     case login
@@ -17,27 +18,13 @@ enum LoginType {
 
 protocol DataServiceType {
     
-    func addUser(userInfo: UserInfo) 
+    func addUser(userInfo: UserInfo) -> Observable<Bool>
     func loginUser(userInfo: UserInfo) -> Observable<Bool>
     func getMe() -> Observable<UserData>
-//    func manageUser(userId: CLong)
-//    func deleteUser(userId: CLong)
-//    func editUser(userInfo: UserInfo)
     
-//    func getAllCities() -> Void
+    func postImage(imageData: Data) -> Observable<Int>
     
-//    func createBoard(title: String, content: String)
-//
-//    @discardableResult
-//    func getBoardList(pageNum: Int) -> Observable<[Board]>
-//
-//    func updateBoard(board: Board)
-//
-//    func deleteBoard(communityId: Int)
-
-//    func postAccessTokenNUserNickname(accessToken: String, nickname: String, type: LoginType) -> Observable<String>
-//    
-//    @discardableResult
-//    func getUserInfo(jwtToken: String) -> Observable<UserInfo>
+    // 일단은 Bool로 하고 나중에 수정..
+    func postProjectInfo(data: ProjectRequestData) -> Observable<Bool>
     
 }

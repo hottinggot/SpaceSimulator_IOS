@@ -32,7 +32,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let mainViewController = ComposeViewController()
+        let mainViewController = MakeProjectViewController()
+        
         let navigationVC = UINavigationController(rootViewController: mainViewController)
         navigationVC.modalPresentationStyle = .fullScreen
         navigationVC.interactivePopGestureRecognizer?.isEnabled = true

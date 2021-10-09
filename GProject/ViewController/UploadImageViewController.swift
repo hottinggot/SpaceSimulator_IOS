@@ -10,15 +10,17 @@ import RxSwift
 import RxCocoa
 import Alamofire
 
-class ComposeViewController: UIViewController {
+class UploadImageViewController: UIViewController {
     
     var imageView = UIImageView()
     var uploadButton = UIButton()
+    var nextButton = UIButton()
     var imagePicker = UIImagePickerController()
     
     var indicator = UIActivityIndicatorView()
     
     var capturedImage: UIImage!
+    let viewModel = UploadImageViewModel()
 
     let disposeBag = DisposeBag()
     
@@ -34,6 +36,8 @@ class ComposeViewController: UIViewController {
 
     private func setView() {
         setImageView()
+        setIndicator()
+        setNextButton()
         setUploadButton()
     }
     
@@ -46,16 +50,27 @@ class ComposeViewController: UIViewController {
         imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
+    private func setIndicator() {
+        indicator.hidesWhenStopped = true
+        indicator.style = .large
+        view.addSubview(indicator)
+        
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
     private func setUploadButton() {
-        uploadButton.setTitle("upload image", for: .normal)
+        uploadButton.setTitle("select image", for: .normal)
         uploadButton.backgroundColor = .lightGray
         uploadButton.layer.cornerRadius = 5
+        uploadButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         
         view.addSubview(uploadButton)
         
         uploadButton.translatesAutoresizingMaskIntoConstraints = false
 
-        uploadButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
+        uploadButton.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -20).isActive = true
         uploadButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         uploadButton.rx.tap
@@ -64,10 +79,44 @@ class ComposeViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
+    
+    private func setNextButton() {
+        nextButton.setTitle("next", for: .normal)
+        nextButton.backgroundColor = .lightGray
+        nextButton.layer.cornerRadius = 5
+        nextButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        
+        view.addSubview(nextButton)
+        
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -70).isActive = true
+        
+        nextButton.rx.tap
+            .bind { _ in
+                self.indicator.startAnimating()
+                self.viewModel.postImageToServer(image: self.capturedImage)
+                    .bind { id in
+                        self.indicator.stopAnimating()
+                        self.moveToMakeProjectViewController(id: id)
+                    }
+                    .disposed(by: self.disposeBag)
+
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func moveToMakeProjectViewController(id: Int) {
+        let makeProjectPage = MakeProjectViewController()
+        makeProjectPage.modalPresentationStyle = .fullScreen
+        makeProjectPage.id = id
+        
+        self.navigationController?.pushViewController(makeProjectPage, animated: true)
+    }
 
 }
 
-extension ComposeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension UploadImageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         

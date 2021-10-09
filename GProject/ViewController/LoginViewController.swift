@@ -6,11 +6,7 @@
 //
 
 import UIKit
-import Alamofire
-
 import RxSwift
-
-import KakaoSDKAuth
 
 
 class LoginViewController: UIViewController {
@@ -29,17 +25,14 @@ class LoginViewController: UIViewController {
     
     var user = PublishSubject<UserInfo>()
     
-//    var accessToken:OAuthToken?
-//    var nickname:String?
-//    var userInfo: UserInfo?
-    
+
     lazy var stackView: UIStackView = {
         let stackV = UIStackView(arrangedSubviews: [self.appNameLabel ,self.emailForm, self.passwdForm, self.loginButton, self.registerButton, self.kakaoLoginButton, self.kakaoRegisterButton])
         
         stackV.axis = .vertical
         stackV.spacing = 20
         stackV.alignment = .fill
-        stackV.distribution = .fillEqually
+        stackV.distribution = .fillProportionally
         return stackV
     }()
 
@@ -49,8 +42,6 @@ class LoginViewController: UIViewController {
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         setStackView()
         bindViewModel()
-        
- 
         
     }
     
@@ -71,7 +62,7 @@ class LoginViewController: UIViewController {
     
     private func setAppNameLabel() {
         appNameLabel.text = "3D home"
-        appNameLabel.font.withSize(30)
+        appNameLabel.font = UIFont(name: "ArialMT", size: 40)
         appNameLabel.textAlignment = .center
     }
     
@@ -96,11 +87,6 @@ class LoginViewController: UIViewController {
         registerButton.titleLabel?.textColor = .white
         registerButton.backgroundColor = .black
         registerButton.layer.cornerRadius = 5
-    }
-    
-    private func setKakaoButton() {
-        kakaoLoginButton.setImage(UIImage(named: "kakao_login_medium_narrow.png"), for: .normal)
-        kakaoRegisterButton.setImage(UIImage(named: "kakao_signup_medium_narrow.png"), for: .normal)
     }
     
     func bindViewModel() {
@@ -137,7 +123,6 @@ class LoginViewController: UIViewController {
         loginButton.rx.tap
             .bind { _ in
                 if self.viewModel.validation == true {
-                    //서버에 로그인 요청
                     self.viewModel.requestLogin()
                     
                 } else {
@@ -146,29 +131,31 @@ class LoginViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        registerButton.rx.tap.bind {
-            self.moveToRegisterPage()
-        }
-        .disposed(by: disposeBag)
+        registerButton.rx.tap
+            .bind {
+                self.moveToRegisterPage()
+            }
+            .disposed(by: disposeBag)
         
     }
     
     func moveToMainPage() {
         
         let listPage: BoardListViewController = BoardListViewController()
-
+        listPage.title = "Project"
+        
         let navigationVC = UINavigationController(rootViewController: listPage)
-        listPage.title = "게시글"
+        navigationVC.interactivePopGestureRecognizer?.isEnabled = true
         navigationVC.navigationBar.prefersLargeTitles = true
+        navigationVC.navigationBar.tintColor = .lightGray
+        navigationVC.isNavigationBarHidden = false
         navigationVC.modalPresentationStyle = .fullScreen
 
-        self.present(navigationVC, animated: true, completion: nil)
+        self.present(navigationVC, animated: true)
+
     }
     
     func moveToRegisterPage() {
-        
-        
-        
         let registerVC = RegisterViewController()
         registerVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(registerVC, animated: true)
