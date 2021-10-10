@@ -20,7 +20,7 @@ import RxKakaoSDKUser
 class DataService: DataServiceType {
 
     
-    let BASE_URL = "http://172.20.10.5:8080"
+    let BASE_URL = "http://172.16.100.58:8080"
     var urlString: String!
     let disposeBag = DisposeBag()
     let tk = TokenUtils()

@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let mainViewController = MakeProjectViewController()
+        let mainViewController = LoginViewController()
         
         let navigationVC = UINavigationController(rootViewController: mainViewController)
         navigationVC.modalPresentationStyle = .fullScreen
