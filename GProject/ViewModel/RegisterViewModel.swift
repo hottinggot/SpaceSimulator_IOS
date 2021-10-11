@@ -1,32 +1,29 @@
 //
-//  LoginViewModel.swift
+//  RegisterViewModel.swift
 //  GProject
 //
-//  Created by 서정 on 2021/07/15.
+//  Created by 서정 on 2021/10/09.
 //
 
 import Foundation
 import RxSwift
 import RxCocoa
 
-
-class LoginViewModel {
-
+class RegisterViewModel {
     let disposeBag = DisposeBag()
-    
-    var requestingUser = UserInfo(email: "", password: "", nickname: "", birth: "")
-
-    var userData = PublishSubject<UserData>()
-    
-    var validation = false
+    private let service: DataServiceType!
     
     let emailTextRelay = BehaviorRelay<String>(value: "")
     let passwdTextRealy = BehaviorRelay<String>(value: "")
-
-    private let service : DataServiceType!
-    init(service : DataServiceType = DataService()) {
+    let nicknameTextRelay = BehaviorRelay<String>(value: "")
+    let birthDateRelay = PublishRelay<Date>()
+    
+    var requestingUser = UserInfo(email: "", password: "", nickname: "", birth: "")
+    
+    var validation = false
+    
+    init(service: DataServiceType = DataService()) {
         self.service = service
- 
     }
     
     func setFormValidation() {
@@ -42,12 +39,17 @@ class LoginViewModel {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+         
         return Observable
-            .combineLatest(emailTextRelay, passwdTextRealy)
-            .map { email, passwd in
+            .combineLatest(emailTextRelay, passwdTextRealy, nicknameTextRelay, birthDateRelay)
+            .map { email, passwd, nickname, birth in
                 if emailTest.evaluate(with: email) && passwd.count > 6 {
                     self.requestingUser.email = email
                     self.requestingUser.password = passwd
+                    self.requestingUser.nickname = nickname
+                    self.requestingUser.birth = dateFormatter.string(from: birth)
                     return true
                 } else {
                     return false
@@ -55,22 +57,10 @@ class LoginViewModel {
             }
     }
     
-    func requestLogin() {
-        
-        service.loginUser(userInfo: requestingUser)
-            .bind { res in
-                if res {
-                    self.service.getMe()
-                        .bind { user in
-                            self.userData.onNext(user)
-                        }
-                        .disposed(by: self.disposeBag)
-                    
-                }
+    func submitRegisterInfo() -> Observable<Bool> {
+        return self.service.addUser(userInfo: requestingUser)
+            .map { res -> Bool in
+                return res
             }
-            .disposed(by: disposeBag)
-
     }
-    
-    
 }

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.4.1)
+  - DropDown (2.3.13)
   - DynamicCodable (1.0)
   - KakaoSDKAuth (2.5.4):
     - KakaoSDKCommon (= 2.5.4)
@@ -74,6 +75,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
+  - DropDown
   - DynamicCodable
   - RxAlamofire (~> 5.2)
   - RxCocoa (~> 5.1)
@@ -83,6 +85,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - DropDown
     - DynamicCodable
     - KakaoSDKAuth
     - KakaoSDKCommon
@@ -106,6 +109,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   DynamicCodable: 2cf558d057b3e6540552943254e1c9eeb706dde2
   KakaoSDKAuth: 6fbd3579e80efffa05a24f17f696c59ca5ab331f
   KakaoSDKCommon: caa186f5cf6f7426ab5135b43001ad997e018daa
@@ -127,6 +131,6 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
 
-PODFILE CHECKSUM: 63167a2171c1ed08f468de01b889368b946c0042
+PODFILE CHECKSUM: 36b909a2c064e7828903f3e1b8140e7462a584da
 
 COCOAPODS: 1.10.1

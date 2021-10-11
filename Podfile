@@ -8,5 +8,6 @@ target 'GProject' do
 	pod 'RxAlamofire', '~> 5.2'
 	pod 'DynamicCodable'
 	pod 'RxKakaoSDK'
+	pod 'DropDown'
 end
 
