@@ -2,6 +2,7 @@ PODS:
   - Alamofire (5.4.1)
   - DropDown (2.3.13)
   - DynamicCodable (1.0)
+  - IQKeyboardManagerSwift (6.5.6)
   - KakaoSDKAuth (2.5.4):
     - KakaoSDKCommon (= 2.5.4)
   - KakaoSDKCommon (2.5.4):
@@ -77,6 +78,7 @@ DEPENDENCIES:
   - Alamofire (~> 5.2)
   - DropDown
   - DynamicCodable
+  - IQKeyboardManagerSwift
   - RxAlamofire (~> 5.2)
   - RxCocoa (~> 5.1)
   - RxKakaoSDK
@@ -87,6 +89,7 @@ SPEC REPOS:
     - Alamofire
     - DropDown
     - DynamicCodable
+    - IQKeyboardManagerSwift
     - KakaoSDKAuth
     - KakaoSDKCommon
     - KakaoSDKLink
@@ -111,6 +114,7 @@ SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   DynamicCodable: 2cf558d057b3e6540552943254e1c9eeb706dde2
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   KakaoSDKAuth: 6fbd3579e80efffa05a24f17f696c59ca5ab331f
   KakaoSDKCommon: caa186f5cf6f7426ab5135b43001ad997e018daa
   KakaoSDKLink: f28c1cfd67e76e8a4dd11b6dc11d9516be98ba72
@@ -131,6 +135,6 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
 
-PODFILE CHECKSUM: 36b909a2c064e7828903f3e1b8140e7462a584da
+PODFILE CHECKSUM: a5e38458f8def50a148f23155f0cd1835a26b842
 
 COCOAPODS: 1.10.1

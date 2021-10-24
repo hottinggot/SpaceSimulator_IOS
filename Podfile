@@ -9,5 +9,6 @@ target 'GProject' do
 	pod 'DynamicCodable'
 	pod 'RxKakaoSDK'
 	pod 'DropDown'
+	pod 'IQKeyboardManagerSwift'
 end
 

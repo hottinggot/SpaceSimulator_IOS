@@ -10,13 +10,12 @@ import RxSwift
 import RxCocoa
 import DropDown
 
-class BoardListViewController: UIViewController {
+class ProjectListViewController: UIViewController {
     
   
     var collectionView: UICollectionView!
-
     
-    let viewModel = BoardListViewModel()
+    let viewModel = ProjectListViewModel()
     let disposeBag = DisposeBag()
     
 //    override func viewWillAppear(_ animated: Bool) {
