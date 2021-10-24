@@ -8,9 +8,15 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
+    
+    var imageView = UIImageView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layer.cornerRadius = 10
+        
+        self.addSubview(imageView)
+        
     }
     
     required init?(coder: NSCoder) {

@@ -144,12 +144,26 @@ class LoginViewController: UIViewController {
         let listPage: ProjectListViewController = ProjectListViewController()
         listPage.title = "Project"
         
+        let navController = UINavigationController(rootViewController: listPage)
+            
+        navController.isNavigationBarHidden = false
         
-        guard let scene = UIApplication().connectedScenes.first else { return }
+        var leftBtnItem = UIBarButtonItem()
+        leftBtnItem.title = "설정"
+        leftBtnItem.tintColor = .black
+        
+        var rightBtnItem = UIBarButtonItem()
+        rightBtnItem.title = "선택"
+        rightBtnItem.tintColor = .black
+        
+        navController.navigationItem.leftBarButtonItem = leftBtnItem
+        navController.navigationItem.rightBarButtonItem = rightBtnItem
+        
+        guard let scene = UIApplication.shared.connectedScenes.first else { return }
         guard let del = scene.delegate as? SceneDelegate else { return }
 
-        del.window?.rootViewController = UINavigationController(rootViewController: listPage)
-
+        del.window?.rootViewController = navController
+        
     }
     
     func moveToRegisterPage() {

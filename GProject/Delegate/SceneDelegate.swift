@@ -32,11 +32,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let mainViewController = LoginViewController()
+        let mainViewController = ProjectListViewController()
+     
+        //
+        mainViewController.title = "project"
+        
+        var leftBtnItem = UIBarButtonItem()
+        leftBtnItem.title = "설정"
+        leftBtnItem.tintColor = .black
+        
+        var rightBtnItem = UIBarButtonItem()
+        rightBtnItem.title = "선택"
+        rightBtnItem.tintColor = .black
+        
+        mainViewController.navigationItem.leftBarButtonItem = leftBtnItem
+        mainViewController.navigationItem.rightBarButtonItem = rightBtnItem
+        
+        //
+        
         
         let navigationVC = UINavigationController(rootViewController: mainViewController)
         navigationVC.interactivePopGestureRecognizer?.isEnabled = true
-        navigationVC.isNavigationBarHidden = true
+//        navigationVC.isNavigationBarHidden = true
+//        navigationVC.isNavigationBarHidden = false
+        navigationVC.navigationBar.isHidden = false
+        navigationVC.navigationBar.barTintColor = .gray
         window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
         

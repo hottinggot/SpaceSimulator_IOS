@@ -20,7 +20,7 @@ import RxKakaoSDKUser
 class DataService: DataServiceType {
 
     
-    let BASE_URL = "http://172.16.100.58:8080"
+    let BASE_URL = "http://192.168.219.106:8080"
     var urlString: String!
     let disposeBag = DisposeBag()
     let tk = TokenUtils()
@@ -173,7 +173,6 @@ class DataService: DataServiceType {
         
         var params: Any
         params = ["name": data.projectName, "imageFileId": data.projectId]
-        print(params)
         
         var request = URLRequest(url: URL(string: urlString)!)
         request.httpMethod = "POST"
@@ -197,6 +196,31 @@ class DataService: DataServiceType {
                     }
                 }
                 return false
+            }
+    }
+    
+    func getAllProject() -> Observable<[ProjectListObjectData]> {
+        urlString = BASE_URL.appending("/project/findAll")
+        let jwt = tk.readJwt()
+        guard let jwt = jwt else {
+            print("JWT NIL")
+            return Observable.of([])
+        }
+        
+        var request = URLRequest(url: URL(string: urlString)!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
+        request.timeoutInterval = 10
+        
+        return RxAlamofire.request(request as URLRequestConvertible)
+            .responseString()
+            .asObservable()
+            .map { res, str -> [ProjectListObjectData] in
+                if let list = try? JSONDecoder().decode([ProjectListObjectData].self, from: str.data(using: .utf8)!) {
+                    return list
+                }
+                return []
             }
         
     }
