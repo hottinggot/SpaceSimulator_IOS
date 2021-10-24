@@ -30,6 +30,9 @@
 		04813D4926D5DDDC0083A3EE /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04813D4826D5DDDC0083A3EE /* CollectionViewCell.swift */; };
 		04813D4B26D683AA0083A3EE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04813D4A26D683AA0083A3EE /* RegisterViewController.swift */; };
 		04AE242926B78C8B005F11F2 /* GProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE242826B78C8B005F11F2 /* GProjectUITests.swift */; };
+		04B22BB427255366007801CD /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B22BB327255366007801CD /* PersonalInfoViewController.swift */; };
+		04B22BB62725543C007801CD /* PersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B22BB52725543C007801CD /* PersonalInfoViewModel.swift */; };
+		04B22BB8272564A2007801CD /* CorrectPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B22BB7272564A2007801CD /* CorrectPasswordViewController.swift */; };
 		04E5A12026A037FF000DAD7F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A11F26A037FF000DAD7F /* User.swift */; };
 		04E5A12226A038CB000DAD7F /* DataServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12126A038CB000DAD7F /* DataServiceType.swift */; };
 		04E5A12426A03ABE000DAD7F /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12326A03ABE000DAD7F /* Project.swift */; };
@@ -113,6 +116,9 @@
 		04AE242626B78C8B005F11F2 /* GProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04AE242826B78C8B005F11F2 /* GProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GProjectUITests.swift; sourceTree = "<group>"; };
 		04AE242A26B78C8B005F11F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04B22BB327255366007801CD /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
+		04B22BB52725543C007801CD /* PersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewModel.swift; sourceTree = "<group>"; };
+		04B22BB7272564A2007801CD /* CorrectPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectPasswordViewController.swift; sourceTree = "<group>"; };
 		04E5A11F26A037FF000DAD7F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		04E5A12126A038CB000DAD7F /* DataServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceType.swift; sourceTree = "<group>"; };
 		04E5A12326A03ABE000DAD7F /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -285,6 +291,8 @@
 				04813D4A26D683AA0083A3EE /* RegisterViewController.swift */,
 				047946E4271030BB0092C880 /* MakeProjectViewController.swift */,
 				04328B032725304600186DD1 /* SettingViewController.swift */,
+				04B22BB327255366007801CD /* PersonalInfoViewController.swift */,
+				04B22BB7272564A2007801CD /* CorrectPasswordViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -302,6 +310,7 @@
 				047946E6271035420092C880 /* MakeProjectViewModel.swift */,
 				047946E82711B1070092C880 /* RegisterViewModel.swift */,
 				04328B052725346400186DD1 /* SettingViewModel.swift */,
+				04B22BB52725543C007801CD /* PersonalInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -607,6 +616,9 @@
 				0417652C26A6D72600E2C4F7 /* TokenUtils.swift in Sources */,
 				2FCE8671272539AF002100FA /* ImageListCell.swift in Sources */,
 				047946E5271030BB0092C880 /* MakeProjectViewController.swift in Sources */,
+				04B22BB8272564A2007801CD /* CorrectPasswordViewController.swift in Sources */,
+				04B22BB62725543C007801CD /* PersonalInfoViewModel.swift in Sources */,
+				04B22BB427255366007801CD /* PersonalInfoViewController.swift in Sources */,
 				0449D7FA269AF03700BCC781 /* LoginViewController.swift in Sources */,
 				04E5A12226A038CB000DAD7F /* DataServiceType.swift in Sources */,
 				2FCE866C27253996002100FA /* ImageListViewController.swift in Sources */,

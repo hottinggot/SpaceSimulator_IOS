@@ -151,16 +151,6 @@ class LoginViewController: UIViewController {
             
         navController.isNavigationBarHidden = false
         
-        var leftBtnItem = UIBarButtonItem()
-        leftBtnItem.title = "설정"
-        leftBtnItem.tintColor = .black
-        
-        var rightBtnItem = UIBarButtonItem()
-        rightBtnItem.title = "선택"
-        rightBtnItem.tintColor = .black
-        
-        navController.navigationItem.leftBarButtonItem = leftBtnItem
-        navController.navigationItem.rightBarButtonItem = rightBtnItem
         
         guard let scene = UIApplication.shared.connectedScenes.first else { return }
         guard let del = scene.delegate as? SceneDelegate else { return }
