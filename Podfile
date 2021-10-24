@@ -10,5 +10,10 @@ target 'GProject' do
 	pod 'RxKakaoSDK'
 	pod 'DropDown'
 	pod 'IQKeyboardManagerSwift'
+	pod 'Kingfisher', '~> 7.0'
+  pod "RxGesture"
+  pod 'SwiftyJSON'
 end
+
+
 

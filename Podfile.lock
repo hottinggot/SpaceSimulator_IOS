@@ -26,6 +26,7 @@ PODS:
     - KakaoSDKCommon/Common (= 2.5.4)
   - KakaoSDKUser (2.5.4):
     - KakaoSDKAuth (= 2.5.4)
+  - Kingfisher (7.1.0)
   - RxAlamofire (5.7.1):
     - RxAlamofire/Core (= 5.7.1)
   - RxAlamofire/Core (5.7.1):
@@ -34,6 +35,9 @@ PODS:
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxGesture (3.0.2):
+    - RxCocoa (~> 5.1)
+    - RxSwift (~> 5.1)
   - RxKakaoSDK (2.5.4):
     - KakaoSDKNavi (= 2.5.4)
     - KakaoSDKTemplate (= 2.5.4)
@@ -73,16 +77,20 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.2)
+  - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - DropDown
   - DynamicCodable
   - IQKeyboardManagerSwift
+  - Kingfisher (~> 7.0)
   - RxAlamofire (~> 5.2)
   - RxCocoa (~> 5.1)
+  - RxGesture
   - RxKakaoSDK
   - RxSwift (~> 5.1)
+  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
@@ -98,8 +106,10 @@ SPEC REPOS:
     - KakaoSDKTalk
     - KakaoSDKTemplate
     - KakaoSDKUser
+    - Kingfisher
     - RxAlamofire
     - RxCocoa
+    - RxGesture
     - RxKakaoSDK
     - RxKakaoSDKAuth
     - RxKakaoSDKCommon
@@ -109,6 +119,7 @@ SPEC REPOS:
     - RxKakaoSDKUser
     - RxRelay
     - RxSwift
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
@@ -123,8 +134,10 @@ SPEC CHECKSUMS:
   KakaoSDKTalk: 41abfd99cf661b186935b95fa295c412dd2eb8a8
   KakaoSDKTemplate: 37c2c19dad4538a0897fde26ac367e7c7f0c2f11
   KakaoSDKUser: 285abc213101bd07a9b44735defd36994ea9ada8
+  Kingfisher: cdabaf49be7ee7cc124f0f276b355edf61903cf8
   RxAlamofire: 8e144c62dcc01d68dcb366bfc542eb6dd46bab78
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxGesture: d6bd7447ca3a596c7a9702a6a2b6a2bb5d8bae54
   RxKakaoSDK: 36b20a3eee328e0b1c7599b5342db92a80fc2514
   RxKakaoSDKAuth: c15c870814e25c3e8dbf0ae529ea89fffedea075
   RxKakaoSDKCommon: fd57aed56b286b0c6dedf50a8c5f0141e97ef858
@@ -134,7 +147,8 @@ SPEC CHECKSUMS:
   RxKakaoSDKUser: 4cea4f1878bac712341ed0107d374f607ac1614d
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: a5e38458f8def50a148f23155f0cd1835a26b842
+PODFILE CHECKSUM: 136905d140757f9a48c40a0a18c7a64ef81875b5
 
 COCOAPODS: 1.10.1
