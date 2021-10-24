@@ -27,4 +27,12 @@ protocol DataServiceType {
     // 일단은 Bool로 하고 나중에 수정..
     func postProjectInfo(data: ProjectRequestData) -> Observable<Bool>
     
+    
+    
+    func getImageList() -> Observable<[ImageListData]>
+    
+    
+    
+    //MockUp test
+    func getCoordinates() -> Observable<CoordinateModel>
 }

@@ -47,23 +47,45 @@ class DataService: DataServiceType {
         }
         
         return RxAlamofire.request(request as URLRequestConvertible)
-            .responseString()
+            .responseData()
             .asObservable()
-            .map ({ (res, str) -> Bool in
-                if let registerRes = try? JSONDecoder().decode(RegisterResponse.self, from: str.data(using: .utf8)!) {
-                    
-                    if registerRes.data.email.count > 0 {
+            .debug()
+            .map{ (http, data) -> Bool in
+                if http.statusCode >= 200 && http.statusCode < 400, let registerResponse = try? JSONDecoder().decode(RegisterResponse.self, from: data) {
+                    if registerResponse.data.email.count > 0 {
                         return true
                     }
                     else {
                         return false
                     }
-                    
-                } else {
+                }
+                else {
                     return false
                 }
-
-            })
+            }
+        
+            
+            
+        
+        
+//            RxAlamofire.request(request as URLRequestConvertible)
+//                .responseString()
+//                .asObservable()
+//                .map ({ (res, str) -> Bool in
+//                    if let registerRes = try? JSONDecoder().decode(RegisterResponse.self, from: str.data(using: .utf8)!) {
+//
+//                        if registerRes.data.email.count > 0 {
+//                            return true
+//                        }
+//                        else {
+//                            return false
+//                        }
+//
+//                    } else {
+//                        return false
+//                    }
+//
+//                })
             
         }
             
@@ -200,6 +222,68 @@ class DataService: DataServiceType {
             }
         
     }
+    
+    
+    
+    
+    func getImageList() -> Observable<[ImageListData]> {
+        urlString = BASE_URL.appending("/image/list")
+        let jwt = tk.readJwt()
+        guard let jwt = jwt else {
+            print("JWT NIL")
+            return Observable.just([])
+        }
+        
+        var params: Any
+        params = [ : ]
+        print(params)
+        
+        var request = URLRequest(url: URL(string: urlString)!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
+        request.timeoutInterval = 10
+        
+        do {
+            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+        } catch {
+            print("http Body Error")
+        }
+        
+        return RxAlamofire.request(request as URLRequestConvertible)
+            .responseString()
+            .asObservable()
+            .map { res, str -> [ImageListData] in
+                if let result = try? JSONDecoder().decode([ImageListData].self, from: str.data(using: .utf8)!) {
+                    return result
+                }
+                return []
+            }
+    }
+    
+    
+    func getCoordinates() -> Observable<CoordinateModel> {
+        return Observable.create{ seal in
+            guard let path = Bundle.main.path(forResource: "coordinates", ofType: "json") else {
+                seal.onError(NSError(domain: "", code: -1, userInfo: nil))
+                return Disposables.create { }
+            }
+            
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path),options: .mappedIfSafe)
+
+                seal.onNext(CoordinateModel(data: data))
+                
+            }
+            catch(let error) {
+                seal.onError(error)
+            }
+            
+            return Disposables.create()
+            
+        }
+    }
+    
     
 }
 

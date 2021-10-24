@@ -145,7 +145,7 @@ class LoginViewController: UIViewController {
         listPage.title = "Project"
         
         
-        guard let scene = UIApplication().connectedScenes.first else { return }
+        guard let scene = UIApplication.shared.connectedScenes.first else { return }
         guard let del = scene.delegate as? SceneDelegate else { return }
 
         del.window?.rootViewController = UINavigationController(rootViewController: listPage)
@@ -158,5 +158,11 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(registerVC, animated: true)
     }
 
+    //projectId
+    //
+    //furnitureId
+    //x
+    //y
+    
 }
 
