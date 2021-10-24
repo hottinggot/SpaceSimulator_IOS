@@ -64,15 +64,18 @@ class LoginViewController: UIViewController {
         appNameLabel.text = "3D home"
         appNameLabel.font = UIFont(name: "ArialMT", size: 40)
         appNameLabel.textAlignment = .center
+        
     }
     
     private func setForm() {
         emailForm.borderStyle = .roundedRect
         emailForm.placeholder = "email"
+        emailForm.text = "aaa@naver.com"
         
         passwdForm.borderStyle = .roundedRect
         passwdForm.isSecureTextEntry = true
         passwdForm.placeholder = "password"
+        passwdForm.text = "aaapassword"
     }
     
     private func setLoginButton() {

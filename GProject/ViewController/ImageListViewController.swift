@@ -28,6 +28,7 @@ class ImageListViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.register(ImageListCell.self, forCellWithReuseIdentifier: "imagelistCellid")
         return cv
     }()
     
@@ -75,7 +76,7 @@ class ImageListViewController: UIViewController {
 
         viewModel.imageListData
             .bind(to: imageCv.rx.items(cellIdentifier: "imagelistCellid", cellType: ImageListCell.self)) { (row, element, cell) in
-                if let url = URL(string: "https://example.com/image.png") {
+                if let url = URL(string: element.url) {
                     cell.image.kf.setImage(with: url)
                 }
                 else {
@@ -147,7 +148,7 @@ extension ImageListViewController {
     private func makecv(){
         self.view.addSubview(imageCv)
         imageCv.translatesAutoresizingMaskIntoConstraints = false
-        imageCv.topAnchor.constraint(equalTo: topbox.topAnchor, constant: 15).isActive = true
+        imageCv.topAnchor.constraint(equalTo: topbox.bottomAnchor, constant: 15).isActive = true
         imageCv.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
         imageCv.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10).isActive = true
         imageCv.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -10).isActive = true

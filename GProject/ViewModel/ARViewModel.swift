@@ -145,7 +145,7 @@ class ARViewModel: NSObject {
                 //
 
             print("incline",incline.degreesToRadians)
-            let wall = createdMyBox(isDoor: false,length: length,image : UIImage(named: "1")!,color: randomcolors[index])
+            let wall = createdMyBox(isDoor: false,length: length,color: randomcolors[index])
             
             //(-0.3 * scaleFactor)
 //            wall.simdWorldPosition = simd_float3(Float(midPoint.x - (0.5 * scaleFactor)), 0, Float(midPoint.y - (1 * scaleFactor)))
@@ -160,7 +160,7 @@ class ARViewModel: NSObject {
         }
         
         
-        
+        print("walls2 all appended")
         self.walls2.accept(walls2Model(wall: walls))
         
     }

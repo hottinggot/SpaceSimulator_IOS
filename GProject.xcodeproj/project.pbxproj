@@ -37,6 +37,32 @@
 		04E5A12826A047A6000DAD7F /* ProjectListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12726A047A6000DAD7F /* ProjectListViewModel.swift */; };
 		04E5A12C26A047F9000DAD7F /* UploadImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12B26A047F9000DAD7F /* UploadImageViewModel.swift */; };
 		04E5A13026A04B7F000DAD7F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12F26A04B7F000DAD7F /* LoginViewModel.swift */; };
+		2F9CB4B427253A1E00476A90 /* ViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9CB4B327253A1E00476A90 /* ViewCoordinator.swift */; };
+		2F9CB4B62725409200476A90 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9CB4B52725409200476A90 /* Models.scnassets */; };
+		2F9CB4B9272541C600476A90 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F9CB4B7272541C600476A90 /* data.json */; };
+		2F9CB4BA272541C600476A90 /* coordinates.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F9CB4B8272541C600476A90 /* coordinates.json */; };
+		2F9CB4BC272542E500476A90 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9CB4BB272542E500476A90 /* IOSurface.framework */; };
+		2FCE86652725397E002100FA /* ObjectSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE86612725397E002100FA /* ObjectSelectViewModel.swift */; };
+		2FCE86662725397E002100FA /* ImageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE86622725397E002100FA /* ImageListViewModel.swift */; };
+		2FCE86672725397E002100FA /* ObjectCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE86632725397E002100FA /* ObjectCellModel.swift */; };
+		2FCE86682725397E002100FA /* ARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE86642725397E002100FA /* ARViewModel.swift */; };
+		2FCE866C27253996002100FA /* ImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE866927253996002100FA /* ImageListViewController.swift */; };
+		2FCE866D27253996002100FA /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE866A27253996002100FA /* ARViewController.swift */; };
+		2FCE866E27253996002100FA /* ObjectSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE866B27253996002100FA /* ObjectSelectViewController.swift */; };
+		2FCE8671272539AF002100FA /* ImageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE866F272539AF002100FA /* ImageListCell.swift */; };
+		2FCE8672272539AF002100FA /* ObjectSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE8670272539AF002100FA /* ObjectSelectionCell.swift */; };
+		2FCE867E272539B9002100FA /* VirtualObjectInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE8675272539B9002100FA /* VirtualObjectInteraction.swift */; };
+		2FCE867F272539B9002100FA /* VirtualObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE8676272539B9002100FA /* VirtualObjectLoader.swift */; };
+		2FCE8680272539B9002100FA /* ThresholdPanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE8677272539B9002100FA /* ThresholdPanGesture.swift */; };
+		2FCE8681272539B9002100FA /* VirtualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE8678272539B9002100FA /* VirtualObject.swift */; };
+		2FCE8682272539B9002100FA /* VirtualObjectARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE867A272539B9002100FA /* VirtualObjectARView.swift */; };
+		2FCE8683272539B9002100FA /* FocusSquareSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE867C272539B9002100FA /* FocusSquareSegment.swift */; };
+		2FCE8684272539B9002100FA /* FocusSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE867D272539B9002100FA /* FocusSquare.swift */; };
+		2FCE868B272539C5002100FA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE8686272539C5002100FA /* Utilities.swift */; };
+		2FCE868C272539C5002100FA /* FunctionClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE8687272539C5002100FA /* FunctionClass.swift */; };
+		2FCE868D272539C5002100FA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE8688272539C5002100FA /* ToastView.swift */; };
+		2FCE868E272539C5002100FA /* ThumbnailGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE8689272539C5002100FA /* ThumbnailGenerator.swift */; };
+		2FCE868F272539C5002100FA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE868A272539C5002100FA /* Extensions.swift */; };
 		A0CD83CAFEA2F24738F9A1C6 /* Pods_GProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7922E9723ECA5E2BEB2676E9 /* Pods_GProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +120,32 @@
 		04E5A12726A047A6000DAD7F /* ProjectListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewModel.swift; sourceTree = "<group>"; };
 		04E5A12B26A047F9000DAD7F /* UploadImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageViewModel.swift; sourceTree = "<group>"; };
 		04E5A12F26A04B7F000DAD7F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		2F9CB4B327253A1E00476A90 /* ViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCoordinator.swift; sourceTree = "<group>"; };
+		2F9CB4B52725409200476A90 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
+		2F9CB4B7272541C600476A90 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		2F9CB4B8272541C600476A90 /* coordinates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coordinates.json; sourceTree = "<group>"; };
+		2F9CB4BB272542E500476A90 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
+		2FCE86612725397E002100FA /* ObjectSelectViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectSelectViewModel.swift; sourceTree = "<group>"; };
+		2FCE86622725397E002100FA /* ImageListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageListViewModel.swift; sourceTree = "<group>"; };
+		2FCE86632725397E002100FA /* ObjectCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectCellModel.swift; sourceTree = "<group>"; };
+		2FCE86642725397E002100FA /* ARViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewModel.swift; sourceTree = "<group>"; };
+		2FCE866927253996002100FA /* ImageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageListViewController.swift; sourceTree = "<group>"; };
+		2FCE866A27253996002100FA /* ARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		2FCE866B27253996002100FA /* ObjectSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectSelectViewController.swift; sourceTree = "<group>"; };
+		2FCE866F272539AF002100FA /* ImageListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageListCell.swift; sourceTree = "<group>"; };
+		2FCE8670272539AF002100FA /* ObjectSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectSelectionCell.swift; sourceTree = "<group>"; };
+		2FCE8675272539B9002100FA /* VirtualObjectInteraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObjectInteraction.swift; sourceTree = "<group>"; };
+		2FCE8676272539B9002100FA /* VirtualObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObjectLoader.swift; sourceTree = "<group>"; };
+		2FCE8677272539B9002100FA /* ThresholdPanGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThresholdPanGesture.swift; sourceTree = "<group>"; };
+		2FCE8678272539B9002100FA /* VirtualObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObject.swift; sourceTree = "<group>"; };
+		2FCE867A272539B9002100FA /* VirtualObjectARView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObjectARView.swift; sourceTree = "<group>"; };
+		2FCE867C272539B9002100FA /* FocusSquareSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusSquareSegment.swift; sourceTree = "<group>"; };
+		2FCE867D272539B9002100FA /* FocusSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusSquare.swift; sourceTree = "<group>"; };
+		2FCE8686272539C5002100FA /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		2FCE8687272539C5002100FA /* FunctionClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionClass.swift; sourceTree = "<group>"; };
+		2FCE8688272539C5002100FA /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		2FCE8689272539C5002100FA /* ThumbnailGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailGenerator.swift; sourceTree = "<group>"; };
+		2FCE868A272539C5002100FA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		744122E7DCE79E6D712AD10A /* Pods-GProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GProject.debug.xcconfig"; path = "Target Support Files/Pods-GProject/Pods-GProject.debug.xcconfig"; sourceTree = "<group>"; };
 		7922E9723ECA5E2BEB2676E9 /* Pods_GProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2568CFD443ECB92C4CAF712 /* Pods-GProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GProject.release.xcconfig"; path = "Target Support Files/Pods-GProject/Pods-GProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F9CB4BC272542E500476A90 /* IOSurface.framework in Frameworks */,
 				A0CD83CAFEA2F24738F9A1C6 /* Pods_GProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				0417652526A5052C00E2C4F7 /* TableViewCell.swift */,
+				2FCE866F272539AF002100FA /* ImageListCell.swift */,
+				2FCE8670272539AF002100FA /* ObjectSelectionCell.swift */,
 				04813D4826D5DDDC0083A3EE /* CollectionViewCell.swift */,
 			);
 			path = View;
@@ -178,17 +233,23 @@
 		0449D7F4269AF03700BCC781 /* GProject */ = {
 			isa = PBXGroup;
 			children = (
+				2FCE8673272539B9002100FA /* ARfiles */,
+				2F9CB4B227253A1E00476A90 /* Coordinator */,
 				0417652426A5050900E2C4F7 /* View */,
 				04E5A11E26A03776000DAD7F /* Delegate */,
 				04E5A11D26A0375E000DAD7F /* Service */,
 				04E5A11C26A03749000DAD7F /* ViewModel */,
 				04E5A11A26A03726000DAD7F /* ViewController */,
 				04E5A11926A0371B000DAD7F /* Model */,
+				2F9CB4B52725409200476A90 /* Models.scnassets */,
 				0449D801269AF03800BCC781 /* Assets.xcassets */,
 				04435F2F269B16D100030944 /* icon */,
 				0449D803269AF03800BCC781 /* LaunchScreen.storyboard */,
 				0449D806269AF03800BCC781 /* Info.plist */,
 				0449D7FE269AF03700BCC781 /* GProject.xcdatamodeld */,
+				2F9CB4B8272541C600476A90 /* coordinates.json */,
+				2F9CB4B7272541C600476A90 /* data.json */,
+				2FCE8685272539C5002100FA /* Utils */,
 			);
 			path = GProject;
 			sourceTree = "<group>";
@@ -215,6 +276,9 @@
 		04E5A11A26A03726000DAD7F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2FCE866A27253996002100FA /* ARViewController.swift */,
+				2FCE866927253996002100FA /* ImageListViewController.swift */,
+				2FCE866B27253996002100FA /* ObjectSelectViewController.swift */,
 				04435F34269B56F700030944 /* ProjectListViewController.swift */,
 				0449D7F9269AF03700BCC781 /* LoginViewController.swift */,
 				0417652726A50E9900E2C4F7 /* UploadImageViewController.swift */,
@@ -231,6 +295,10 @@
 				04E5A12726A047A6000DAD7F /* ProjectListViewModel.swift */,
 				04E5A12B26A047F9000DAD7F /* UploadImageViewModel.swift */,
 				04E5A12F26A04B7F000DAD7F /* LoginViewModel.swift */,
+				2FCE86642725397E002100FA /* ARViewModel.swift */,
+				2FCE86622725397E002100FA /* ImageListViewModel.swift */,
+				2FCE86632725397E002100FA /* ObjectCellModel.swift */,
+				2FCE86612725397E002100FA /* ObjectSelectViewModel.swift */,
 				047946E6271035420092C880 /* MakeProjectViewModel.swift */,
 				047946E82711B1070092C880 /* RegisterViewModel.swift */,
 				04328B052725346400186DD1 /* SettingViewModel.swift */,
@@ -266,9 +334,69 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		2F9CB4B227253A1E00476A90 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				2F9CB4B327253A1E00476A90 /* ViewCoordinator.swift */,
+			);
+			name = Coordinator;
+			path = GProject/Coordinator;
+			sourceTree = SOURCE_ROOT;
+		};
+		2FCE8673272539B9002100FA /* ARfiles */ = {
+			isa = PBXGroup;
+			children = (
+				2FCE8674272539B9002100FA /* VirtualObject */,
+				2FCE8679272539B9002100FA /* VirtualAobjectARview */,
+				2FCE867B272539B9002100FA /* FocusSquare */,
+			);
+			path = ARfiles;
+			sourceTree = "<group>";
+		};
+		2FCE8674272539B9002100FA /* VirtualObject */ = {
+			isa = PBXGroup;
+			children = (
+				2FCE8675272539B9002100FA /* VirtualObjectInteraction.swift */,
+				2FCE8676272539B9002100FA /* VirtualObjectLoader.swift */,
+				2FCE8677272539B9002100FA /* ThresholdPanGesture.swift */,
+				2FCE8678272539B9002100FA /* VirtualObject.swift */,
+			);
+			path = VirtualObject;
+			sourceTree = "<group>";
+		};
+		2FCE8679272539B9002100FA /* VirtualAobjectARview */ = {
+			isa = PBXGroup;
+			children = (
+				2FCE867A272539B9002100FA /* VirtualObjectARView.swift */,
+			);
+			path = VirtualAobjectARview;
+			sourceTree = "<group>";
+		};
+		2FCE867B272539B9002100FA /* FocusSquare */ = {
+			isa = PBXGroup;
+			children = (
+				2FCE867C272539B9002100FA /* FocusSquareSegment.swift */,
+				2FCE867D272539B9002100FA /* FocusSquare.swift */,
+			);
+			path = FocusSquare;
+			sourceTree = "<group>";
+		};
+		2FCE8685272539C5002100FA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2FCE8686272539C5002100FA /* Utilities.swift */,
+				2FCE8687272539C5002100FA /* FunctionClass.swift */,
+				2FCE8688272539C5002100FA /* ToastView.swift */,
+				2FCE8689272539C5002100FA /* ThumbnailGenerator.swift */,
+				2FCE868A272539C5002100FA /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		E5E455EA70A9B12AB91CC53E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2F9CB4BB272542E500476A90 /* IOSurface.framework */,
 				7922E9723ECA5E2BEB2676E9 /* Pods_GProject.framework */,
 			);
 			name = Frameworks;
@@ -387,8 +515,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				04435F31269B16EF00030944 /* kakao_login_medium_narrow.png in Resources */,
+				2F9CB4B9272541C600476A90 /* data.json in Resources */,
 				04435F33269B25D200030944 /* kakao_signup_medium_narrow.png in Resources */,
+				2F9CB4BA272541C600476A90 /* coordinates.json in Resources */,
 				0449D805269AF03800BCC781 /* LaunchScreen.storyboard in Resources */,
+				2F9CB4B62725409200476A90 /* Models.scnassets in Resources */,
 				04328B0227250CED00186DD1 /* addImage.png in Resources */,
 				0449D802269AF03800BCC781 /* Assets.xcassets in Resources */,
 			);
@@ -458,28 +589,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FCE866E27253996002100FA /* ObjectSelectViewController.swift in Sources */,
+				2FCE8683272539B9002100FA /* FocusSquareSegment.swift in Sources */,
+				2FCE86682725397E002100FA /* ARViewModel.swift in Sources */,
+				2FCE8682272539B9002100FA /* VirtualObjectARView.swift in Sources */,
+				2F9CB4B427253A1E00476A90 /* ViewCoordinator.swift in Sources */,
 				0417652826A50E9900E2C4F7 /* UploadImageViewController.swift in Sources */,
+				2FCE86662725397E002100FA /* ImageListViewModel.swift in Sources */,
 				04328B042725304600186DD1 /* SettingViewController.swift in Sources */,
+				2FCE867E272539B9002100FA /* VirtualObjectInteraction.swift in Sources */,
 				04E5A12C26A047F9000DAD7F /* UploadImageViewModel.swift in Sources */,
+				2FCE867F272539B9002100FA /* VirtualObjectLoader.swift in Sources */,
+				2FCE8680272539B9002100FA /* ThresholdPanGesture.swift in Sources */,
+				2FCE868C272539C5002100FA /* FunctionClass.swift in Sources */,
+				2FCE868E272539C5002100FA /* ThumbnailGenerator.swift in Sources */,
 				04E5A12626A0405F000DAD7F /* DataService.swift in Sources */,
 				0417652C26A6D72600E2C4F7 /* TokenUtils.swift in Sources */,
+				2FCE8671272539AF002100FA /* ImageListCell.swift in Sources */,
 				047946E5271030BB0092C880 /* MakeProjectViewController.swift in Sources */,
 				0449D7FA269AF03700BCC781 /* LoginViewController.swift in Sources */,
 				04E5A12226A038CB000DAD7F /* DataServiceType.swift in Sources */,
+				2FCE866C27253996002100FA /* ImageListViewController.swift in Sources */,
 				0417652626A5052C00E2C4F7 /* TableViewCell.swift in Sources */,
 				04E5A13026A04B7F000DAD7F /* LoginViewModel.swift in Sources */,
 				04813D4926D5DDDC0083A3EE /* CollectionViewCell.swift in Sources */,
+				2FCE868D272539C5002100FA /* ToastView.swift in Sources */,
 				04813D4B26D683AA0083A3EE /* RegisterViewController.swift in Sources */,
+				2FCE8672272539AF002100FA /* ObjectSelectionCell.swift in Sources */,
 				0449D7F6269AF03700BCC781 /* AppDelegate.swift in Sources */,
 				04E5A12026A037FF000DAD7F /* User.swift in Sources */,
 				0417653C26B38E5E00E2C4F7 /* Table.swift in Sources */,
 				04328B062725346400186DD1 /* SettingViewModel.swift in Sources */,
 				047946E7271035420092C880 /* MakeProjectViewModel.swift in Sources */,
+				2FCE868F272539C5002100FA /* Extensions.swift in Sources */,
+				2FCE86672725397E002100FA /* ObjectCellModel.swift in Sources */,
+				2FCE86652725397E002100FA /* ObjectSelectViewModel.swift in Sources */,
 				0449D7F8269AF03700BCC781 /* SceneDelegate.swift in Sources */,
 				047946E92711B1070092C880 /* RegisterViewModel.swift in Sources */,
 				04435F35269B56F700030944 /* ProjectListViewController.swift in Sources */,
 				04E5A12426A03ABE000DAD7F /* Project.swift in Sources */,
+				2FCE8684272539B9002100FA /* FocusSquare.swift in Sources */,
+				2FCE8681272539B9002100FA /* VirtualObject.swift in Sources */,
+				2FCE866D27253996002100FA /* ARViewController.swift in Sources */,
 				0449D800269AF03700BCC781 /* GProject.xcdatamodeld in Sources */,
+				2FCE868B272539C5002100FA /* Utilities.swift in Sources */,
 				04E5A12826A047A6000DAD7F /* ProjectListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,7 +835,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V75GP346YD;
+				DEVELOPMENT_TEAM = 9Y7C23MX88;
 				INFOPLIST_FILE = GProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -702,7 +855,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V75GP346YD;
+				DEVELOPMENT_TEAM = 9Y7C23MX88;
 				INFOPLIST_FILE = GProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

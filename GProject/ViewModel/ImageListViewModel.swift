@@ -45,6 +45,7 @@ class ImageListViewModel {
         FunctionClass.shared.showdialog(show: true)
         service.getImageList()
             .subscribe(onNext : { [unowned self] data in
+                print(data)
                 imageListData.accept(data)
                 FunctionClass.shared.showdialog(show: false)
             })

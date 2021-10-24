@@ -22,6 +22,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         
         print("branch test")
+        
+        UserDefaults.standard.register(defaults: ["cacheImage" : [String: Data]()])
+        
+//        DispatchQueue.global(qos: .background).async {
+//            var cache = (UserDefaults.standard.dictionary(forKey: "cacheImage") as? [String:Data]) ?? [String :Data]()
+//            
+//            
+//            VirtualObject.availableObjects.forEach { model  in
+//                print("making cache thumbnail image")
+//                if cache.filter({ $0.key == model.modelName }).count == 0, let image = ARQLThumbnailGenerator().thumbnail(for: model.referenceURL, size: CGSize(width: 100, height: 100)) {
+//                    cache[model.modelName] = image.jpegData(compressionQuality: 0.5)!
+//                }
+//            }
+//            print("making cache thumbnail image has finished")
+//            UserDefaults.standard.setValue(cache, forKey: "cacheImage")
+//        }
+        
         return true
     }
 

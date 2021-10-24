@@ -15,7 +15,7 @@ class ImageListCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = .lightGray
         makeimage()
     }
     
@@ -43,7 +43,7 @@ extension ImageListCell {
         image.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
         image.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         image.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-        image.backgroundColor = .white
+        image.backgroundColor = .clear
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
     }

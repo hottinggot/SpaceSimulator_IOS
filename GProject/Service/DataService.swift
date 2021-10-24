@@ -15,6 +15,8 @@ import RxKakaoSDKAuth
 import KakaoSDKUser
 import RxKakaoSDKUser
 
+import SwiftyJSON
+
 
 
 class DataService: DataServiceType {
@@ -263,25 +265,25 @@ class DataService: DataServiceType {
         print(params)
         
         var request = URLRequest(url: URL(string: urlString)!)
-        request.httpMethod = "POST"
+        request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
-        request.timeoutInterval = 10
+        request.timeoutInterval = 5
         
-        do {
-            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
-        } catch {
-            print("http Body Error")
-        }
         
         return RxAlamofire.request(request as URLRequestConvertible)
-            .responseString()
+            .responseData()
             .asObservable()
-            .map { res, str -> [ImageListData] in
-                if let result = try? JSONDecoder().decode([ImageListData].self, from: str.data(using: .utf8)!) {
-                    return result
+            .map { res, data  -> [ImageListData] in
+                let json = JSON(data)
+                print("json",json)
+                var temp : [ImageListData] = []
+                
+                for model in json["data"].arrayValue {
+                    temp.append(ImageListData(imageFileId: model["imageFileId"].intValue,
+                                              url: model["url"].stringValue))
                 }
-                return []
+                return temp
             }
     }
     
