@@ -49,20 +49,8 @@ class ARViewController : UIViewController , ARSCNViewDelegate {
         self.view.addSubview(sceneView)
         sceneView.frame = self.view.frame
         
-        // Set the view's delegate
-        
         sceneView.delegate = self
 
-        
-        // Show statistics such as fps and timing information
-        //        sceneView.showsStatistics = true
-        
-        // Create a new scene
-        //        let scene = SCNScene()
-        //
-        //        sceneView.scene = scene
-        //        sceneView.scene.rootNode.addChildNode(focusSquare)
-        
         makecoachingView()
         coachingViewConfiguration()
         updateFocusSquare(isObjectVisible: false)
@@ -77,40 +65,18 @@ class ARViewController : UIViewController , ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-//        configuration.planeDetection = [.horizontal]
-//        if #available(iOS 12.0, *) {
-//            configuration.environmentTexturing = .automatic
-//        }
-        //
-        // Run the view's session
         sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // Pause the view's session
         sceneView.session.pause()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //        resetTracking()
     }
     
-    
-    func resetTracking(){
-        
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = [.horizontal,.vertical]
-        //        configuration.planeDetection = []
-        
-        if #available(iOS 12.0, *) {
-            configuration.environmentTexturing = .automatic
-        }
-        sceneView.session.run(configuration,options: [] )
-        
-    }
     
     
     func setupScene(){
@@ -142,10 +108,12 @@ class ARViewController : UIViewController , ARSCNViewDelegate {
     func bindView(){
         viewmodel.walls2.subscribe(onNext : { [unowned self] walls in
             for wall in walls.wall {
+                print("??")
                 self.node.addChildNode(wall)
             }
         })
         .disposed(by: disposebag)
+        
         
         viewmodel.coordinates
             .subscribe(onNext : { [unowned self] coordinateArray in

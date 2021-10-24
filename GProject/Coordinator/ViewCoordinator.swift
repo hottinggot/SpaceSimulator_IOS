@@ -18,7 +18,6 @@ protocol ObjectSelectionCoordinatorProtocol : AnyObject {
 
 class ViewCoordinator  {
     
-    
     var disposebag = DisposeBag()
     
     var rootView = ARViewController()
@@ -35,6 +34,10 @@ class ViewCoordinator  {
                 (del.window?.rootViewController as? UINavigationController)?.pushViewController(rootView, animated: true)
             })
             .disposed(by: disposebag)
+        
+
+      
+        
         self.showObjectselectionViewController()
     }
     

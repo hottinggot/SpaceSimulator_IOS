@@ -56,18 +56,28 @@ class LoginViewModel {
     }
     
     func requestLogin() {
-        
+        FunctionClass.shared.showdialog(show: true)
         service.loginUser(userInfo: requestingUser)
-            .bind { res in
+            .subscribe(onNext : { [unowned self] res in
                 if res {
                     self.service.getMe()
-                        .bind { user in
+                        .subscribe(onNext : { [unowned self] user in
                             self.userData.onNext(user)
-                        }
+                            FunctionClass.shared.showdialog(show: false)
+                        }, onError: { error  in
+                            ToastView.shared.short(txt_msg: "me failed")
+                            FunctionClass.shared.showdialog(show: false)
+                        })
                         .disposed(by: self.disposeBag)
-                    
                 }
-            }
+                else {
+                    ToastView.shared.short(txt_msg: "login failed")
+                    FunctionClass.shared.showdialog(show: false)
+                }
+            },onError: { error  in
+                ToastView.shared.short(txt_msg: "login failed")
+                FunctionClass.shared.showdialog(show: false)
+            })
             .disposed(by: disposeBag)
 
     }

@@ -71,7 +71,9 @@ class ProjectListViewController: UIViewController {
         collectionView.rx.itemSelected
             .bind { idx in
                 if(idx[1]==0) {
-                    self.moveToUploadImagePage()
+                    let view = ImageListViewController()
+                    self.navigationController?.pushViewController(view, animated: true)
+//                    self.moveToUploadImagePage()
                 }
             }
             .disposed(by: disposeBag)

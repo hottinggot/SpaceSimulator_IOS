@@ -44,7 +44,7 @@ func createdBox(isDoor : Bool) -> SCNNode {
     return node
 }
 
-func createdMyBox(isDoor : Bool,length : CGFloat, image : UIImage , color : UIColor? = nil) -> SCNNode {
+func createdMyBox(isDoor : Bool,length : CGFloat , color : UIColor? = nil) -> SCNNode {
     let node = SCNNode()
     
     
@@ -54,9 +54,6 @@ func createdMyBox(isDoor : Bool,length : CGFloat, image : UIImage , color : UICo
     firstboxNode.renderingOrder = 200 //이게 높을 수록 렌더링 순서 강조가 높아짐
     if let color = color {
         firstboxNode.geometry?.firstMaterial?.diffuse.contents = color.cgColor
-    }
-    else {
-        firstboxNode.geometry?.firstMaterial?.diffuse.contents = image
     }
     
     node.addChildNode(firstboxNode)
