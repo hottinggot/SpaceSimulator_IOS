@@ -14,7 +14,7 @@
 		0417653C26B38E5E00E2C4F7 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417653B26B38E5E00E2C4F7 /* Table.swift */; };
 		04435F31269B16EF00030944 /* kakao_login_medium_narrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04435F30269B16EF00030944 /* kakao_login_medium_narrow.png */; };
 		04435F33269B25D200030944 /* kakao_signup_medium_narrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04435F32269B25D200030944 /* kakao_signup_medium_narrow.png */; };
-		04435F35269B56F700030944 /* BoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04435F34269B56F700030944 /* BoardListViewController.swift */; };
+		04435F35269B56F700030944 /* ProjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04435F34269B56F700030944 /* ProjectListViewController.swift */; };
 		0449D7F6269AF03700BCC781 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0449D7F5269AF03700BCC781 /* AppDelegate.swift */; };
 		0449D7F8269AF03700BCC781 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0449D7F7269AF03700BCC781 /* SceneDelegate.swift */; };
 		0449D7FA269AF03700BCC781 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0449D7F9269AF03700BCC781 /* LoginViewController.swift */; };
@@ -31,7 +31,7 @@
 		04E5A12226A038CB000DAD7F /* DataServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12126A038CB000DAD7F /* DataServiceType.swift */; };
 		04E5A12426A03ABE000DAD7F /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12326A03ABE000DAD7F /* Project.swift */; };
 		04E5A12626A0405F000DAD7F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12526A0405F000DAD7F /* DataService.swift */; };
-		04E5A12826A047A6000DAD7F /* BoardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12726A047A6000DAD7F /* BoardListViewModel.swift */; };
+		04E5A12826A047A6000DAD7F /* ProjectListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12726A047A6000DAD7F /* ProjectListViewModel.swift */; };
 		04E5A12C26A047F9000DAD7F /* UploadImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12B26A047F9000DAD7F /* UploadImageViewModel.swift */; };
 		04E5A13026A04B7F000DAD7F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12F26A04B7F000DAD7F /* LoginViewModel.swift */; };
 		A0CD83CAFEA2F24738F9A1C6 /* Pods_GProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7922E9723ECA5E2BEB2676E9 /* Pods_GProject.framework */; };
@@ -64,7 +64,7 @@
 		0417653B26B38E5E00E2C4F7 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		04435F30269B16EF00030944 /* kakao_login_medium_narrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakao_login_medium_narrow.png; sourceTree = "<group>"; };
 		04435F32269B25D200030944 /* kakao_signup_medium_narrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakao_signup_medium_narrow.png; sourceTree = "<group>"; };
-		04435F34269B56F700030944 /* BoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewController.swift; sourceTree = "<group>"; };
+		04435F34269B56F700030944 /* ProjectListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewController.swift; sourceTree = "<group>"; };
 		0449D7F2269AF03700BCC781 /* GProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0449D7F5269AF03700BCC781 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0449D7F7269AF03700BCC781 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		04E5A12126A038CB000DAD7F /* DataServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceType.swift; sourceTree = "<group>"; };
 		04E5A12326A03ABE000DAD7F /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		04E5A12526A0405F000DAD7F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		04E5A12726A047A6000DAD7F /* BoardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewModel.swift; sourceTree = "<group>"; };
+		04E5A12726A047A6000DAD7F /* ProjectListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewModel.swift; sourceTree = "<group>"; };
 		04E5A12B26A047F9000DAD7F /* UploadImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageViewModel.swift; sourceTree = "<group>"; };
 		04E5A12F26A04B7F000DAD7F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		744122E7DCE79E6D712AD10A /* Pods-GProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GProject.debug.xcconfig"; path = "Target Support Files/Pods-GProject/Pods-GProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 		04E5A11A26A03726000DAD7F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				04435F34269B56F700030944 /* BoardListViewController.swift */,
+				04435F34269B56F700030944 /* ProjectListViewController.swift */,
 				0449D7F9269AF03700BCC781 /* LoginViewController.swift */,
 				0417652726A50E9900E2C4F7 /* UploadImageViewController.swift */,
 				04813D4A26D683AA0083A3EE /* RegisterViewController.swift */,
@@ -220,7 +220,7 @@
 		04E5A11C26A03749000DAD7F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				04E5A12726A047A6000DAD7F /* BoardListViewModel.swift */,
+				04E5A12726A047A6000DAD7F /* ProjectListViewModel.swift */,
 				04E5A12B26A047F9000DAD7F /* UploadImageViewModel.swift */,
 				04E5A12F26A04B7F000DAD7F /* LoginViewModel.swift */,
 				047946E6271035420092C880 /* MakeProjectViewModel.swift */,
@@ -465,10 +465,10 @@
 				047946E7271035420092C880 /* MakeProjectViewModel.swift in Sources */,
 				0449D7F8269AF03700BCC781 /* SceneDelegate.swift in Sources */,
 				047946E92711B1070092C880 /* RegisterViewModel.swift in Sources */,
-				04435F35269B56F700030944 /* BoardListViewController.swift in Sources */,
+				04435F35269B56F700030944 /* ProjectListViewController.swift in Sources */,
 				04E5A12426A03ABE000DAD7F /* Project.swift in Sources */,
 				0449D800269AF03700BCC781 /* GProject.xcdatamodeld in Sources */,
-				04E5A12826A047A6000DAD7F /* BoardListViewModel.swift in Sources */,
+				04E5A12826A047A6000DAD7F /* ProjectListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

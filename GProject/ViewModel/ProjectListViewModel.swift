@@ -1,5 +1,5 @@
 //
-//  BoardListViewModel.swift
+//  ProjectListViewModel.swift
 //  GProject
 //
 //  Created by 서정 on 2021/07/15.
@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 
-class BoardListViewModel {
+class ProjectListViewModel {
     let disposeBag = DisposeBag()
     private let service: DataServiceType!
     

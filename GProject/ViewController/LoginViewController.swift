@@ -141,17 +141,14 @@ class LoginViewController: UIViewController {
     
     func moveToMainPage() {
         
-        let listPage: BoardListViewController = BoardListViewController()
+        let listPage: ProjectListViewController = ProjectListViewController()
         listPage.title = "Project"
         
-        let navigationVC = UINavigationController(rootViewController: listPage)
-        navigationVC.interactivePopGestureRecognizer?.isEnabled = true
-        navigationVC.navigationBar.prefersLargeTitles = true
-        navigationVC.navigationBar.tintColor = .lightGray
-        navigationVC.isNavigationBarHidden = false
-        navigationVC.modalPresentationStyle = .fullScreen
+        
+        guard let scene = UIApplication().connectedScenes.first else { return }
+        guard let del = scene.delegate as? SceneDelegate else { return }
 
-        self.present(navigationVC, animated: true)
+        del.window?.rootViewController = UINavigationController(rootViewController: listPage)
 
     }
     

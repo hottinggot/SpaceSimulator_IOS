@@ -35,7 +35,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let mainViewController = LoginViewController()
         
         let navigationVC = UINavigationController(rootViewController: mainViewController)
-        navigationVC.modalPresentationStyle = .fullScreen
         navigationVC.interactivePopGestureRecognizer?.isEnabled = true
         navigationVC.isNavigationBarHidden = true
         window?.rootViewController = navigationVC
