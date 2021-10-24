@@ -18,9 +18,6 @@ class ProjectListViewController: UIViewController {
     let viewModel = ProjectListViewModel()
     let disposeBag = DisposeBag()
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        viewModel.refreshBoardList()
-//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +25,7 @@ class ProjectListViewController: UIViewController {
         
         addCollectionView()
         bindCollectionView()
-       
+        bindLeftNavButton()
     }
     
 
@@ -57,13 +54,19 @@ class ProjectListViewController: UIViewController {
     }
     
     private func bindCollectionView() {
-        let examples = ["A"]
-        let data = Observable.of(examples)
         
-        data.bind(to: collectionView.rx.items(cellIdentifier: "Cell", cellType: CollectionViewCell.self)) { (row, element, cell) in
-            cell.backgroundColor = .lightGray
-        }
-        .disposed(by: disposeBag)
+        viewModel.projectListBehaviorSubject
+            .bind(to: collectionView.rx.items(cellIdentifier: "Cell", cellType: CollectionViewCell.self)) { (index: Int, element: ProjectListObjectData, cell: CollectionViewCell)  in
+                
+                cell.backgroundColor = .lightGray
+               
+                let imageData = try? Data(contentsOf: URL(string: element.imageFileUri)!)
+                
+                if let imageData = imageData {
+                    cell.imageView.image = UIImage(data: imageData)
+                }
+            }
+            .disposed(by: disposeBag)
         
         collectionView.rx.itemSelected
             .bind { idx in
@@ -80,5 +83,20 @@ class ProjectListViewController: UIViewController {
         uploadImagePage.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(uploadImagePage, animated: true)
     }
-
+    
+    private func bindLeftNavButton() {
+        self.navigationItem.leftBarButtonItem?
+            .rx.tap
+            .bind { _ in
+                self.moveToSettingVC()
+            }
+            .disposed(by: disposeBag)    }
+    
+    private func moveToSettingVC() {
+        let settingPage = SettingViewController()
+        settingPage.modalPresentationStyle = .fullScreen
+        
+        self.navigationController?.pushViewController(settingPage, animated: true)
+    }
+    
 }

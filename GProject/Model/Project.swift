@@ -25,3 +25,12 @@ struct ProjectResultData: Codable {
     var name: String
     var createdTime: String
 }
+
+
+struct ProjectListObjectData: Codable {
+    var projectId: CLong
+    var projectName: String
+    var date: String
+    var imageFileUri: String
+    var imageFileId: CLong
+}

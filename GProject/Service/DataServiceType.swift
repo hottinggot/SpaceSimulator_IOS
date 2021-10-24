@@ -27,4 +27,6 @@ protocol DataServiceType {
     // 일단은 Bool로 하고 나중에 수정..
     func postProjectInfo(data: ProjectRequestData) -> Observable<Bool>
     
+    func getAllProject() -> Observable<[ProjectListObjectData]>
+    
 }
