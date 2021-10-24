@@ -115,9 +115,10 @@ class RegisterViewController: UIViewController {
         submitButton.rx.tap
             .bind {
                 if self.viewModel.validation == true {
+                    FunctionClass.shared.showdialog(show: true)
                     
                     self.viewModel.submitRegisterInfo()
-                        .bind { res in
+                        .subscribe(onNext : { [unowned self ] res in
                             if res == true {
                                 self.moveBackToLoginPage()
                             }
@@ -125,12 +126,17 @@ class RegisterViewController: UIViewController {
                                 // 회원가입 실패
                                 // timeout도 처리
                                 print("회원가입 실패")
+                                ToastView.shared.short(txt_msg: "회원 가입 실패")
                             }
-                            
-                        }
+                            FunctionClass.shared.showdialog(show: false)
+                        }, onError : { error in
+                            ToastView.shared.short(txt_msg: "회원 가입 안됨")
+                            FunctionClass.shared.showdialog(show: false)
+                        })
                         .disposed(by: self.disposeBag)
                     } else {
                         //입력 형식이 맞지 않음
+                        ToastView.shared.short(txt_msg: "입력 형식이 맞지 않음")
                         print("입력 형식이 맞지 않음")
                     }
             }
