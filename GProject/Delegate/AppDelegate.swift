@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RxKakaoSDKCommon.initSDK(appKey: "1b0c47ff5a86ac6ba28be58895f5f89d")
         
         IQKeyboardManager.shared.enable = true
+        
+        print("branch test")
         return true
     }
 
