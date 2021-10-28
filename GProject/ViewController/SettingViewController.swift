@@ -51,14 +51,15 @@ class SettingViewController: UIViewController {
                 case 0:
                     self.moveToPersonalInfoPage()
                 case 1:
-                    self.
+                    self.moveToCorrectPasswordPage()
                 case 2:
                     self.alertMsgWithdrawal("회원 탈퇴", message: "회원을 탈퇴하시겠습니까?")
-                case 3:
-                    self.alertMsg("로그아웃", message: "로그아웃 하시겠습니까?")
+//                case 3:
+//                    self.alertMsg("로그아웃", message: "로그아웃 하시겠습니까?")
                     
                 default:
-                    self.alertMsg("다시 시도", message: "다시 시도해주세요")
+                    self.alertMsgWithdrawal("회원 탈퇴", message: "회원을 탈퇴하시겠습니까?")
+//                    self.alertMsg("다시 시도", message: "다시 시도해주세요")
                 }
                     
             
@@ -71,6 +72,11 @@ class SettingViewController: UIViewController {
         personalInfoVC.modalPresentationStyle = .fullScreen
         
         self.navigationController?.pushViewController(personalInfoVC, animated: true)
+    }
+    
+    private func moveToCorrectPasswordPage() {
+        let correctPasswdVC = CorrectPasswordViewController()
+        
     }
     
     func alertMsgWithdrawal(_ title: String, message: String) {
