@@ -93,9 +93,7 @@ class ImageListViewController: UIViewController {
                 self.navigationController?.pushViewController(view, animated: true)
             })
             .disposed(by: disposebag)
-    
     }
-    
     
 }
 extension ImageListViewController {

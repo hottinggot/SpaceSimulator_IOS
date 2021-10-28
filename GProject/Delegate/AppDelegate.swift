@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.shared.enable = true
         
-        print("branch test")
         
         UserDefaults.standard.register(defaults: ["cacheImage" : [String: Data]()])
         

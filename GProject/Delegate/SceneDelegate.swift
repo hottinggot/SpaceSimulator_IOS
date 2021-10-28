@@ -34,8 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 //
-        let mainViewController = LoginViewController()
-            //ImageListViewController()
+        let mainViewController = CorrectPasswordViewController()
 
         let navigationVC = UINavigationController(rootViewController: mainViewController)
         navigationVC.interactivePopGestureRecognizer?.isEnabled = true
