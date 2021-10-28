@@ -32,6 +32,7 @@ protocol DataServiceType {
     
     func getImageList() -> Observable<[ImageListData]>
     
+    func withdrawal() -> Observable<Bool>
     
     
     //MockUp test

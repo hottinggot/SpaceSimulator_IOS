@@ -35,7 +35,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
 //
         let mainViewController = LoginViewController()
-            //ImageListViewController()
 
         let navigationVC = UINavigationController(rootViewController: mainViewController)
         navigationVC.interactivePopGestureRecognizer?.isEnabled = true

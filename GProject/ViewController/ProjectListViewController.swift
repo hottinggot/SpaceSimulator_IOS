@@ -23,6 +23,17 @@ class ProjectListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        let leftBtnItem = UIBarButtonItem()
+        leftBtnItem.title = "설정"
+        leftBtnItem.tintColor = .black
+        
+        let rightBtnItem = UIBarButtonItem()
+        rightBtnItem.title = "선택"
+        rightBtnItem.tintColor = .black
+        
+        self.navigationItem.leftBarButtonItem = leftBtnItem
+        self.navigationItem.rightBarButtonItem = rightBtnItem
+        
         addCollectionView()
         bindCollectionView()
         bindLeftNavButton()

@@ -287,6 +287,36 @@ class DataService: DataServiceType {
             }
     }
     
+    func withdrawal() -> Observable<Bool> {
+        urlString = BASE_URL.appending("/api/withdrawal")
+        let jwt = tk.readJwt()
+        guard let jwt = jwt else {
+            print("JWT NIL")
+            return Observable.just(false)
+        }
+        
+        var request = URLRequest(url: URL(string: urlString)!)
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
+        request.timeoutInterval = 5
+        
+        return RxAlamofire.request(request as URLRequestConvertible)
+            .responseData()
+            .asObservable()
+            .map { res, data  -> Bool in
+                // 나중에 추가 데이터 처리...
+                // let json = JSON(data)
+                
+                if res.statusCode == 200 {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        
+        
+    }
     
     func getCoordinates() -> Observable<CoordinateModel> {
         return Observable.create{ seal in
