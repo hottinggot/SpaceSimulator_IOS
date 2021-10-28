@@ -16,6 +16,12 @@ class CollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 10
         
         self.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+        
         
     }
     

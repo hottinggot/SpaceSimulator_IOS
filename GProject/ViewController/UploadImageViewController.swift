@@ -98,7 +98,8 @@ class UploadImageViewController: UIViewController {
                 self.viewModel.postImageToServer(image: self.capturedImage)
                     .bind { id in
                         self.indicator.stopAnimating()
-                        self.moveToMakeProjectViewController(id: id)
+                        self.navigationController?.popViewController(animated: true)
+//                        self.moveToMakeProjectViewController(id: id)
                     }
                     .disposed(by: self.disposeBag)
 

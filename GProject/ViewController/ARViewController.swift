@@ -45,7 +45,7 @@ class ARViewController : UIViewController , ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.isHidden = true
         self.view.addSubview(sceneView)
         sceneView.frame = self.view.frame
         
@@ -107,6 +107,7 @@ class ARViewController : UIViewController , ARSCNViewDelegate {
     
     func bindView(){
         viewmodel.walls2.subscribe(onNext : { [unowned self] walls in
+            print("something")
             for wall in walls.wall {
                 print("??")
                 self.node.addChildNode(wall)

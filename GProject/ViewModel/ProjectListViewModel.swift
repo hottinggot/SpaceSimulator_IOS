@@ -14,17 +14,26 @@ class ProjectListViewModel {
     let disposeBag = DisposeBag()
     private let service: DataServiceType!
     
-    var projectListBehaviorSubject = BehaviorSubject<[ProjectListObjectData]>(value: [ProjectListObjectData(projectId: 0, projectName: "make", date: "", imageFileUri: "./icon/addImage.png", imageFileId: 0)])
+    var projectListBehaviorSubject = BehaviorRelay<[ProjectListObjectData]>(value: [ProjectListObjectData(projectId: 0, name: "make", date: "", imageFileUri: "icListEmptyWork", imageFileId: 0)])
     
     init(service: DataServiceType = DataService()) {
         self.service = service
+        getProjectList()
     }
     
     func getProjectList() {
         service.getAllProject()
             .bind { list in
-                self.projectListBehaviorSubject.onNext([ProjectListObjectData(projectId: 0, projectName: "", date: "", imageFileUri: "./icon/addImage.png", imageFileId: 0)] + list)
+                
+                self.projectListBehaviorSubject.accept([ProjectListObjectData(projectId: 0, name: "", date: "", imageFileUri: "icListEmptyWork", imageFileId: 0)] + list)
             }
             .disposed(by: disposeBag)
+    }
+    
+    
+    
+    
+    func getProjectId(index : Int) -> Int {
+        return projectListBehaviorSubject.value[index].projectId
     }
 }

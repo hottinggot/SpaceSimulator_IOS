@@ -15,6 +15,8 @@ class ImageListViewModel {
     
     //data
     let coordinate = ViewCoordinator()
+    private var projectName = ""
+    private var currenSelectedImageId : Int = 0
     
     //output
      var imageListData = BehaviorRelay<[ImageListData]>(value: [])
@@ -22,6 +24,7 @@ class ImageListViewModel {
     
     //input
     var currentSelectedImage = PublishSubject<Int>()
+
     
     
     private let service: DataServiceType!
@@ -34,7 +37,39 @@ class ImageListViewModel {
         
         currentSelectedImage
             .subscribe(onNext : { [unowned self] imageFileId in
-                coordinate.start()
+                self.currenSelectedImageId = imageFileId
+                guard let scene = UIApplication.shared.connectedScenes.first else { return }
+                guard let del = scene.delegate as? SceneDelegate else { return }
+                let popup = ProjectNameInputPopup(frame: del.window!.frame)
+                popup.textinput.rx.text.orEmpty
+                    .subscribe(onNext : { [unowned self] name in
+                        self.projectName = name
+                    })
+                    .disposed(by: disposebag)
+                
+                popup.closeBtn.rx.tap
+                    .subscribe(onNext : { [unowned self] in
+                        popup.removeFromSuperview()
+                    })
+                    .disposed(by: disposebag)
+                
+                
+                popup.confirmBtn.rx.tap
+                    .subscribe(onNext : { [unowned self] in
+                        popup.removeFromSuperview()
+                        service.postProjectInfo(data: ProjectRequestData(projectId: currenSelectedImageId, projectName: projectName))
+                            .subscribe(onNext : { [unowned self] data  in
+                                self.coordinate.goback()
+                            })
+                            .disposed(by: disposebag)
+                    })
+                    .disposed(by: disposebag)
+                
+                del.window?.addSubview(popup)
+                
+                
+                
+//                coordinate.start()
             })
             .disposed(by: disposebag)
     }
