@@ -6,13 +6,19 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CorrectPasswordViewController: UIViewController {
 
+    let viewModel = CorrectPasswordViewModel()
+    let disposeBag = DisposeBag()
+    
     let titleLabel = UILabel()
     let passwordField = UITextField()
     let confirmField = UITextField()
     let button = UIButton()
+
     
     
     lazy var vStackView: UIStackView = {
@@ -30,6 +36,7 @@ class CorrectPasswordViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         makeView()
+        bindView()
     
     }
     
@@ -51,6 +58,31 @@ class CorrectPasswordViewController: UIViewController {
         vStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
         vStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
         
+    }
+    
+    func bindView() {
+        passwordField.rx.text
+            .orEmpty
+            .bind(to: viewModel.passwdTextRelay)
+            .disposed(by: disposeBag)
+        
+        confirmField.rx.text
+            .orEmpty
+            .bind(to: viewModel.confirmTextRealy)
+            .disposed(by: disposeBag)
+        
+        viewModel.setValidation()
+        
+        button.rx.tap
+            .bind{ _ in
+                if self.viewModel.validation == true {
+                    self.viewModel.requestChangePasswd()
+                }
+                else {
+                    print("비밀번호 형식에 맞지 않음.")
+                }
+            }
+            .disposed(by: disposeBag)
     }
 
 }

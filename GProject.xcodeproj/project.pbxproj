@@ -12,6 +12,7 @@
 		0417652C26A6D72600E2C4F7 /* TokenUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417652B26A6D72600E2C4F7 /* TokenUtils.swift */; };
 		0417653426A86DEC00E2C4F7 /* GProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417653326A86DEC00E2C4F7 /* GProjectTests.swift */; };
 		0417653C26B38E5E00E2C4F7 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417653B26B38E5E00E2C4F7 /* Table.swift */; };
+		0431E61F272A685B00C75B68 /* CorrectPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431E61E272A685B00C75B68 /* CorrectPasswordViewModel.swift */; };
 		04328B0227250CED00186DD1 /* addImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 04328B0127250CED00186DD1 /* addImage.png */; };
 		04328B042725304600186DD1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04328B032725304600186DD1 /* SettingViewController.swift */; };
 		04328B062725346400186DD1 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04328B052725346400186DD1 /* SettingViewModel.swift */; };
@@ -95,6 +96,7 @@
 		0417653326A86DEC00E2C4F7 /* GProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GProjectTests.swift; sourceTree = "<group>"; };
 		0417653526A86DEC00E2C4F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0417653B26B38E5E00E2C4F7 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
+		0431E61E272A685B00C75B68 /* CorrectPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectPasswordViewModel.swift; sourceTree = "<group>"; };
 		04328B0127250CED00186DD1 /* addImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addImage.png; sourceTree = "<group>"; };
 		04328B032725304600186DD1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		04328B052725346400186DD1 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				047946E82711B1070092C880 /* RegisterViewModel.swift */,
 				04328B052725346400186DD1 /* SettingViewModel.swift */,
 				04B22BB52725543C007801CD /* PersonalInfoViewModel.swift */,
+				0431E61E272A685B00C75B68 /* CorrectPasswordViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				0417652C26A6D72600E2C4F7 /* TokenUtils.swift in Sources */,
 				2FCE8671272539AF002100FA /* ImageListCell.swift in Sources */,
 				047946E5271030BB0092C880 /* MakeProjectViewController.swift in Sources */,
+				0431E61F272A685B00C75B68 /* CorrectPasswordViewModel.swift in Sources */,
 				04B22BB8272564A2007801CD /* CorrectPasswordViewController.swift in Sources */,
 				04B22BB62725543C007801CD /* PersonalInfoViewModel.swift in Sources */,
 				04B22BB427255366007801CD /* PersonalInfoViewController.swift in Sources */,

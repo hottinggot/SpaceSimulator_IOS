@@ -77,6 +77,9 @@ class SettingViewController: UIViewController {
     private func moveToCorrectPasswordPage() {
         let correctPasswdVC = CorrectPasswordViewController()
         
+        correctPasswdVC.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(correctPasswdVC, animated: true)
+        
     }
     
     func alertMsgWithdrawal(_ title: String, message: String) {
