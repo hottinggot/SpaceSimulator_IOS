@@ -13,6 +13,8 @@ import DropDown
 class ProjectListViewController: UIViewController {
     
   
+    let coordinator = ViewCoordinator()
+    
     var collectionView: UICollectionView!
     
     let viewModel = ProjectListViewModel()
@@ -58,22 +60,31 @@ class ProjectListViewController: UIViewController {
         viewModel.projectListBehaviorSubject
             .bind(to: collectionView.rx.items(cellIdentifier: "Cell", cellType: CollectionViewCell.self)) { (index: Int, element: ProjectListObjectData, cell: CollectionViewCell)  in
                 
-                cell.backgroundColor = .lightGray
-               
-                let imageData = try? Data(contentsOf: URL(string: element.imageFileUri)!)
-                
-                if let imageData = imageData {
-                    cell.imageView.image = UIImage(data: imageData)
+                cell.backgroundColor = .black
+                if element.imageFileUri == "icListEmptyWork" {
+                    cell.imageView.image = UIImage(named: "icListEmptyWork")
+                }
+                else {
+                    let imageData = try? Data(contentsOf: URL(string: element.imageFileUri)!)
+                    
+                    if let imageData = imageData {
+                        cell.imageView.image = UIImage(data: imageData)
+                    }
                 }
             }
             .disposed(by: disposeBag)
         
         collectionView.rx.itemSelected
-            .bind { idx in
+            .bind { [unowned self] idx in
                 if(idx[1]==0) {
                     let view = ImageListViewController()
                     self.navigationController?.pushViewController(view, animated: true)
 //                    self.moveToUploadImagePage()
+                }
+                else {
+                    
+                   let projectId = viewModel.getProjectId(index: idx[1])
+                    coordinator.start(projectId: projectId)
                 }
             }
             .disposed(by: disposeBag)

@@ -23,11 +23,11 @@ class ViewCoordinator  {
     var rootView = ARViewController()
     var bottomsheet :  ObjectSelectViewController!
     
-    func start(){
+    func start(projectId : Int){
         let viewmodel = ARViewModel()
         viewmodel.coordinator = self
-        rootView.viewmodel = ARViewModel()
-        viewmodel.getCoordinates()
+        rootView.viewmodel = viewmodel
+        viewmodel.getCoordinates(projectId : projectId)
             .subscribe(onNext : { [unowned self] in
                 guard let scene = UIApplication.shared.connectedScenes.first else { return }
                 guard let del = scene.delegate as? SceneDelegate else { return }
@@ -49,6 +49,11 @@ class ViewCoordinator  {
         rootView.view.addSubview(bottomsheet)
         bottomsheet.frame = rootView.view.frame
         
+    }
+    
+    
+    func goback(){
+        rootView.navigationController?.popViewController(animated: true)
     }
     
 }

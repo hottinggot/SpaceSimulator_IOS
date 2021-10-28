@@ -36,4 +36,5 @@ protocol DataServiceType {
     
     //MockUp test
     func getCoordinates() -> Observable<CoordinateModel>
+    func getProjectDetail(projectId : Int) -> Observable<CoordinateModel>
 }

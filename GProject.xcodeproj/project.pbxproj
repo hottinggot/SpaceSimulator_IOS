@@ -42,6 +42,7 @@
 		2F9CB4B9272541C600476A90 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F9CB4B7272541C600476A90 /* data.json */; };
 		2F9CB4BA272541C600476A90 /* coordinates.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F9CB4B8272541C600476A90 /* coordinates.json */; };
 		2F9CB4BC272542E500476A90 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9CB4BB272542E500476A90 /* IOSurface.framework */; };
+		2F9CB4BE272550B300476A90 /* ProjectNameInputPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9CB4BD272550B300476A90 /* ProjectNameInputPopUp.swift */; };
 		2FCE86652725397E002100FA /* ObjectSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE86612725397E002100FA /* ObjectSelectViewModel.swift */; };
 		2FCE86662725397E002100FA /* ImageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE86622725397E002100FA /* ImageListViewModel.swift */; };
 		2FCE86672725397E002100FA /* ObjectCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE86632725397E002100FA /* ObjectCellModel.swift */; };
@@ -125,6 +126,7 @@
 		2F9CB4B7272541C600476A90 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		2F9CB4B8272541C600476A90 /* coordinates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coordinates.json; sourceTree = "<group>"; };
 		2F9CB4BB272542E500476A90 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
+		2F9CB4BD272550B300476A90 /* ProjectNameInputPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNameInputPopUp.swift; sourceTree = "<group>"; };
 		2FCE86612725397E002100FA /* ObjectSelectViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectSelectViewModel.swift; sourceTree = "<group>"; };
 		2FCE86622725397E002100FA /* ImageListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageListViewModel.swift; sourceTree = "<group>"; };
 		2FCE86632725397E002100FA /* ObjectCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectCellModel.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				2FCE866F272539AF002100FA /* ImageListCell.swift */,
 				2FCE8670272539AF002100FA /* ObjectSelectionCell.swift */,
 				04813D4826D5DDDC0083A3EE /* CollectionViewCell.swift */,
+				2F9CB4BD272550B300476A90 /* ProjectNameInputPopUp.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				04E5A12C26A047F9000DAD7F /* UploadImageViewModel.swift in Sources */,
 				2FCE867F272539B9002100FA /* VirtualObjectLoader.swift in Sources */,
 				2FCE8680272539B9002100FA /* ThresholdPanGesture.swift in Sources */,
+				2F9CB4BE272550B300476A90 /* ProjectNameInputPopUp.swift in Sources */,
 				2FCE868C272539C5002100FA /* FunctionClass.swift in Sources */,
 				2FCE868E272539C5002100FA /* ThumbnailGenerator.swift in Sources */,
 				04E5A12626A0405F000DAD7F /* DataService.swift in Sources */,

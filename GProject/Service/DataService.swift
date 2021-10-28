@@ -238,13 +238,22 @@ class DataService: DataServiceType {
         request.timeoutInterval = 10
         
         return RxAlamofire.request(request as URLRequestConvertible)
-            .responseString()
+            .responseData()
             .asObservable()
             .map { res, str -> [ProjectListObjectData] in
-                if let list = try? JSONDecoder().decode([ProjectListObjectData].self, from: str.data(using: .utf8)!) {
-                    return list
+                print("findall",str)
+                
+                let json = JSON(str)
+                var temp : [ProjectListObjectData] = []
+                
+                for model in json["data"].arrayValue {
+                    temp.append(ProjectListObjectData(projectId: model["projectId"].intValue,
+                                                      name: model["name"].stringValue,
+                                                      date: model["date"].stringValue,
+                                                      imageFileUri: model["imageFileUri"].stringValue,
+                                                      imageFileId: model["imageFileId"].intValue))
                 }
-                return []
+                return temp
             }
         
     }
@@ -288,6 +297,52 @@ class DataService: DataServiceType {
     }
     
     
+    func getProjectDetail(projectId : Int) -> Observable<CoordinateModel> {
+        urlString = BASE_URL.appending("/project/\(projectId)/open")
+        
+        
+        let jwt = tk.readJwt()
+        guard let jwt = jwt else {
+            print("JWT NIL")
+            return Observable.just(CoordinateModel(data: [],width: 1,height: 1))
+        }
+        
+        var params: Any
+        params = [ : ]
+        print(params)
+        
+        var request = URLRequest(url: URL(string: urlString)!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
+        request.timeoutInterval = 5
+        
+        return RxAlamofire.request(request as URLRequestConvertible)
+            .responseData()
+            .asObservable()
+            .map { res, data  ->  CoordinateModel in
+                let json = JSON(data)
+                var model = CoordinateModel(data: [],width: 1,height: 1)
+                var temp : [([Int],[Int])] = []
+                
+                var horizontal : Int = json["length"]["horizontal"].intValue
+                var vertical : Int = json["length"]["vertical"].intValue
+                
+                print("json",json)
+                for model in json["wall"].arrayValue {
+                    let start = [model["startPoint"]["x"].intValue, model["startPoint"]["y"].intValue]
+                    let end = [model["endPoint"]["x"].intValue, model["endPoint"]["y"].intValue]
+                    temp.append((start, end))
+                }
+                
+                model = CoordinateModel(data: temp,width: horizontal,height : vertical)
+                return model
+            }
+        
+       
+    }
+    
+    
     func getCoordinates() -> Observable<CoordinateModel> {
         return Observable.create{ seal in
             guard let path = Bundle.main.path(forResource: "coordinates", ofType: "json") else {
@@ -298,7 +353,7 @@ class DataService: DataServiceType {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path),options: .mappedIfSafe)
 
-                seal.onNext(CoordinateModel(data: data))
+//                seal.onNext(CoordinateModel(data: data))
                 
             }
             catch(let error) {

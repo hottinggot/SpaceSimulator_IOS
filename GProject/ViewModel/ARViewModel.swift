@@ -27,12 +27,6 @@ class ARViewModel: NSObject {
     
     
     //output
-    struct walls {
-        var back : SCNNode
-        var left : SCNNode
-        var right : SCNNode
-        var front : SCNNode
-    }
     
     struct walls2Model {
         var wall : [SCNNode]
@@ -48,7 +42,7 @@ class ARViewModel: NSObject {
         return colors
     }()
     
-    var walls = ReplaySubject<walls>.create(bufferSize: 1)
+    
     var walls2 = BehaviorRelay<walls2Model>.init(value: walls2Model(wall: []))
     var coordinates = BehaviorRelay<[[CGPoint]]>(value: [])
     
@@ -74,17 +68,22 @@ class ARViewModel: NSObject {
     
     
     
-    func getCoordinates() -> Observable<Void> {
+    func getCoordinates(projectId : Int) -> Observable<Void> {
         return Observable.create{ [unowned self] seal in
-            service.getCoordinates()
+            service.getProjectDetail(projectId: projectId)
                 .subscribe(onNext : { [unowned self] data in
+                    if data.coordinates.count == 0 {
+                        coordinator?.goback()
+                        return
+                    }
                     for coord in data.coordinates {
                         print("coord",coord)
                     }
                     
                     
-                    let coordArray = data.coordinates.map{ [CGPoint(x : (($0.0[0]) / 15)  , y : ($0.0[1] / 15) ) ,
-                                                            CGPoint(x : (($0.1[0]) / 15) , y : ($0.1[1] / 15) )]}
+                    
+                    let coordArray = data.coordinates.map{ [CGPoint(x : (($0.0[0]) / data.width)  , y : ($0.0[1] / data.height ) ) ,
+                                                            CGPoint(x : (($0.1[0]) / data.width) , y : ($0.1[1] / data.height) )]}
                     
                     
                     var tempcoord : [[CGPoint]] = []
@@ -147,10 +146,7 @@ class ARViewModel: NSObject {
             print("incline",incline.degreesToRadians)
             let wall = createdMyBox(isDoor: false,length: length,color: randomcolors[index])
             
-            //(-0.3 * scaleFactor)
-//            wall.simdWorldPosition = simd_float3(Float(midPoint.x - (0.5 * scaleFactor)), 0, Float(midPoint.y - (1 * scaleFactor)))
             wall.worldPosition = SCNVector3.init(midPoint.x - (0.5 * scaleFactor), 0, midPoint.y - (1 * scaleFactor))
-//            wall.position = SCNVector3.init(midPoint.x - (0.5 * scaleFactor), (-0.3 * scaleFactor), midPoint.y - (1 * scaleFactor)) // x, y, z
             wall.eulerAngles = SCNVector3.init(0, incline.degreesToRadians, 0)
             
             

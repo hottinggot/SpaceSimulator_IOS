@@ -18,9 +18,6 @@ class ImageListViewController: UIViewController {
     
     var topbox = UIView()
     
-    var backBtn = UIButton()
-    
-    
     var imageUploadBtn = UIButton()
     
     
@@ -44,15 +41,10 @@ class ImageListViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         maketopbox()
-        makebackbtn()
         makeimageUploadbtn()
         makecv()
         
-        
-        
-        
         bindView()
-        
     }
     
     
@@ -89,12 +81,6 @@ class ImageListViewController: UIViewController {
         
         
         //action
-        self.backBtn.rx.tap
-            .subscribe(onNext : { [unowned self] in
-                self.navigationController?.popViewController(animated: true)
-            })
-            .disposed(by: disposebag)
-        
         
         imageCv.rx.modelSelected(ImageListData.self)
             .map{ $0.imageFileId }
@@ -121,15 +107,6 @@ extension ImageListViewController {
         topbox.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
         topbox.heightAnchor.constraint(equalToConstant: 60).isActive = true
         topbox.backgroundColor = .white
-    }
-    private func makebackbtn(){
-        self.view.addSubview(backBtn)
-        backBtn.translatesAutoresizingMaskIntoConstraints = false
-        backBtn.centerYAnchor.constraint(equalTo: topbox.centerYAnchor, constant: 0).isActive = true
-        backBtn.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15).isActive = true
-        backBtn.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        backBtn.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        backBtn.backgroundColor = .red
     }
     
     private func makeimageUploadbtn(){
