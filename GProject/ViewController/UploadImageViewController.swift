@@ -14,7 +14,7 @@ class UploadImageViewController: UIViewController {
     
     var imageView = UIImageView()
     var uploadButton = UIButton()
-    var nextButton = UIButton()
+    var okayButton = UIButton()
     var imagePicker = UIImagePickerController()
     
     var indicator = UIActivityIndicatorView()
@@ -37,7 +37,7 @@ class UploadImageViewController: UIViewController {
     private func setView() {
         setImageView()
         setIndicator()
-        setNextButton()
+        setOkayButton()
         setUploadButton()
     }
     
@@ -61,7 +61,7 @@ class UploadImageViewController: UIViewController {
     }
     
     private func setUploadButton() {
-        uploadButton.setTitle("select image", for: .normal)
+        uploadButton.setTitle("사진 선택하기", for: .normal)
         uploadButton.backgroundColor = .lightGray
         uploadButton.layer.cornerRadius = 5
         uploadButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
@@ -70,7 +70,7 @@ class UploadImageViewController: UIViewController {
         
         uploadButton.translatesAutoresizingMaskIntoConstraints = false
 
-        uploadButton.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -20).isActive = true
+        uploadButton.bottomAnchor.constraint(equalTo: okayButton.topAnchor, constant: -20).isActive = true
         uploadButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         uploadButton.rx.tap
@@ -80,40 +80,35 @@ class UploadImageViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func setNextButton() {
-        nextButton.setTitle("next", for: .normal)
-        nextButton.backgroundColor = .lightGray
-        nextButton.layer.cornerRadius = 5
-        nextButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+    private func setOkayButton() {
+        okayButton.setTitle("확인", for: .normal)
+        okayButton.backgroundColor = .lightGray
+        okayButton.layer.cornerRadius = 5
+        okayButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         
-        view.addSubview(nextButton)
+        view.addSubview(okayButton)
         
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -70).isActive = true
+        okayButton.translatesAutoresizingMaskIntoConstraints = false
+        okayButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        okayButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -70).isActive = true
         
-        nextButton.rx.tap
+        okayButton.rx.tap
             .bind { _ in
-                self.indicator.startAnimating()
-                self.viewModel.postImageToServer(image: self.capturedImage)
-                    .bind { id in
-                        self.indicator.stopAnimating()
-                        self.navigationController?.popViewController(animated: true)
-//                        self.moveToMakeProjectViewController(id: id)
-                    }
-                    .disposed(by: self.disposeBag)
-
+                if(self.imageView.image != nil) {
+                    self.indicator.startAnimating()
+                    self.viewModel.postImageToServer(image: self.capturedImage)
+                        .bind { id in
+                            self.indicator.stopAnimating()
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                        .disposed(by: self.disposeBag)
+                } else {
+                    print("이미지를 업로드해주세요")
+                }
             }
             .disposed(by: disposeBag)
     }
-    
-    private func moveToMakeProjectViewController(id: Int) {
-        let makeProjectPage = MakeProjectViewController()
-        makeProjectPage.modalPresentationStyle = .fullScreen
-        makeProjectPage.id = id
-        
-        self.navigationController?.pushViewController(makeProjectPage, animated: true)
-    }
+
 
 }
 

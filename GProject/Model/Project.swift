@@ -41,8 +41,22 @@ struct ImageListData : Codable {
     var url : String
 }
 
+struct CheckProjectData : Codable {
+    var isModelExist: Bool
+    var model: Model?
+}
 
+struct CreateProjectData : Codable {
+    var isModelExist: Bool
+    var name: String
+    var createdTime: String
+    var model: String?
+    var projectId: CLong
+}
 
+struct Model: Codable {
+    
+}
 
 struct CoordinateModel {
     var coordinates : [([Int],[Int])] = []

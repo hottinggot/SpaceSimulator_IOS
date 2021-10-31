@@ -43,7 +43,6 @@ class ImageListViewController: UIViewController {
         maketopbox()
         makeimageUploadbtn()
         makecv()
-        
         bindView()
     }
     
@@ -55,10 +54,10 @@ class ImageListViewController: UIViewController {
         //collectionview Setup
         
         if let layout = imageCv.collectionViewLayout as? UICollectionViewFlowLayout {
-            let cellWidth = (UIScreen.main.bounds.width - 30) / 2
+            let cellWidth = (UIScreen.main.bounds.width - 40) / 2
             let cellHeight = cellWidth
             layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-            layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             
@@ -76,10 +75,7 @@ class ImageListViewController: UIViewController {
                 }
             }
             .disposed(by: disposebag)
-        
-        
-        
-        
+
         //action
         
         imageCv.rx.modelSelected(ImageListData.self)
@@ -115,9 +111,12 @@ extension ImageListViewController {
         imageUploadBtn.widthAnchor.constraint(equalToConstant: 100).isActive = true
         imageUploadBtn.heightAnchor.constraint(equalToConstant: 20).isActive = true
         imageUploadBtn.setTitle("이미지 업로드 하기", for: .normal)
-        imageUploadBtn.setTitleColor(.black, for: .normal)
+        imageUploadBtn.backgroundColor = .black
+        imageUploadBtn.layer.cornerRadius = 5
+        imageUploadBtn.setTitleColor(.white, for: .normal)
         imageUploadBtn.titleLabel?.adjustsFontSizeToFitWidth = true
-        imageUploadBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        imageUploadBtn.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        imageUploadBtn.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
     private func makecv(){
@@ -127,7 +126,8 @@ extension ImageListViewController {
         imageCv.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
         imageCv.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10).isActive = true
         imageCv.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -10).isActive = true
-        imageCv.backgroundColor = .clear
+        imageCv.layer.cornerRadius = 10
+        imageCv.backgroundColor = .systemFill
     }
     
     
