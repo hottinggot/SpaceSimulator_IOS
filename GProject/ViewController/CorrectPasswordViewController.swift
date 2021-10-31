@@ -76,7 +76,7 @@ class CorrectPasswordViewController: UIViewController {
         button.rx.tap
             .bind{ _ in
                 if self.viewModel.validation == true {
-                    self.viewModel.requestChangePasswd()
+//                    self.viewModel.requestChangePasswd()
                 }
                 else {
                     print("비밀번호 형식에 맞지 않음.")

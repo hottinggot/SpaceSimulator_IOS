@@ -7,8 +7,4 @@
 
 import UIKit
 
-struct Table {
-    var offsetY: CGFloat
-    var contentHeight: CGFloat
-    var tableViewHeight: CGFloat
-}
+let imageIconName: String = "addImage.png"

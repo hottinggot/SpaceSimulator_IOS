@@ -48,7 +48,7 @@ class CorrectPasswordViewModel {
             }
     }
     
-    func requestChangePasswd() {
-        service
-    }
+//    func requestChangePasswd() {
+//        service
+//    }
 }

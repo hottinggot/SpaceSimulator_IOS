@@ -25,7 +25,7 @@ protocol DataServiceType {
     func postImage(imageData: Data) -> Observable<Int>
     
     // 일단은 Bool로 하고 나중에 수정..
-    func postProjectInfo(data: ProjectRequestData) -> Observable<Bool>
+    func postProjectInfo(data: ProjectRequestData) -> Observable<CreateProjectData>
     
     
     func getAllProject() -> Observable<[ProjectListObjectData]>
@@ -33,7 +33,7 @@ protocol DataServiceType {
     func getImageList() -> Observable<[ImageListData]>
     
     func withdrawal() -> Observable<Bool>
-    
+    func check3dModel(imageFileId: Int) -> Observable<CheckProjectData>
     
     //MockUp test
     func getCoordinates() -> Observable<CoordinateModel>

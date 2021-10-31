@@ -64,11 +64,13 @@ extension ProjectNameInputPopup {
         stack.widthAnchor.constraint(equalToConstant: 300).isActive = true
         stack.heightAnchor.constraint(lessThanOrEqualToConstant: 300).isActive = true
         
-        
+        textinput.addLeftPadding()
         textinput.backgroundColor = .black
         textinput.textColor = .white
-        let attr = NSAttributedString(string: "프로젝트 이름을 입력해주세요", attributes: [.foregroundColor : UIColor.white])
+        
+        let attr = NSAttributedString(string: "프로젝트 이름을 입력해주세요", attributes: [.foregroundColor : UIColor.lightGray])
         textinput.attributedPlaceholder = attr
+
         
         
         btnstack.translatesAutoresizingMaskIntoConstraints = false
@@ -77,17 +79,16 @@ extension ProjectNameInputPopup {
         closeBtn.backgroundColor = .gray
         closeBtn.setTitle("닫기", for:  .normal)
         closeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        closeBtn.setTitleColor(.lightGray, for: .normal)
+        closeBtn.setTitleColor(.white, for: .normal)
         
         
-        confirmBtn.backgroundColor = .systemBlue
+        confirmBtn.backgroundColor = .systemTeal
         confirmBtn.setTitle("확인", for: .normal)
         confirmBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        confirmBtn.setTitleColor(.lightGray, for: .normal)
-        
-        
+        confirmBtn.setTitleColor(.white, for: .normal)
         
     }
+    
     private func makebox(){
         self.addSubview(box)
         box.translatesAutoresizingMaskIntoConstraints = false
@@ -96,5 +97,15 @@ extension ProjectNameInputPopup {
         box.trailingAnchor.constraint(equalTo: stack.trailingAnchor, constant: 0).isActive = true
         box.bottomAnchor.constraint(equalTo: stack.bottomAnchor, constant: 0).isActive = true
         box.backgroundColor = .black
+        box.layer.cornerRadius = 10
+        
     }
+}
+
+extension UITextField {
+  func addLeftPadding() {
+    let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
+    self.leftView = paddingView
+    self.leftViewMode = ViewMode.always
+  }
 }

@@ -14,14 +14,11 @@ class ObjectSelectionCell : UICollectionViewCell  {
     
     var image = UIImageView()
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         makeimage()
         
     }
-    
     
     override func layoutSubviews() {
         super.layoutSubviews()

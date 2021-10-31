@@ -22,7 +22,7 @@ import SwiftyJSON
 class DataService: DataServiceType {
 
     
-    let BASE_URL = "http://192.168.219.106:8080"
+    let BASE_URL = "http://3.38.95.177:8080"
     var urlString: String!
     let disposeBag = DisposeBag()
     let tk = TokenUtils()
@@ -65,29 +65,6 @@ class DataService: DataServiceType {
                     return false
                 }
             }
-        
-            
-            
-        
-        
-//            RxAlamofire.request(request as URLRequestConvertible)
-//                .responseString()
-//                .asObservable()
-//                .map ({ (res, str) -> Bool in
-//                    if let registerRes = try? JSONDecoder().decode(RegisterResponse.self, from: str.data(using: .utf8)!) {
-//
-//                        if registerRes.data.email.count > 0 {
-//                            return true
-//                        }
-//                        else {
-//                            return false
-//                        }
-//
-//                    } else {
-//                        return false
-//                    }
-//
-//                })
             
         }
             
@@ -187,12 +164,12 @@ class DataService: DataServiceType {
         })
     }
     
-    func postProjectInfo(data: ProjectRequestData) -> Observable<Bool> {
+    func postProjectInfo(data: ProjectRequestData) -> Observable<CreateProjectData> {
         urlString = BASE_URL.appending("/project/new")
         let jwt = tk.readJwt()
         guard let jwt = jwt else {
             print("JWT NIL")
-            return Observable.just(false)
+            return Observable.just(CreateProjectData(isModelExist: false, name: "", createdTime: "", model: nil, projectId: 0))
         }
         
         var params: Any
@@ -202,7 +179,6 @@ class DataService: DataServiceType {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
-        request.timeoutInterval = 10
         
         do {
             try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
@@ -211,15 +187,33 @@ class DataService: DataServiceType {
         }
         
         return RxAlamofire.request(request as URLRequestConvertible)
-            .responseString()
+            .responseJSON()
             .asObservable()
-            .map { res, str -> Bool in
-                if let projectResultData = try? JSONDecoder().decode(ProjectResultData.self, from: str.data(using: .utf8)!) {
-                    if projectResultData.createdTime.count > 0 {
-                        return true
-                    }
+            .map { response -> CreateProjectData in
+                
+                if let result = response.value {
+                    let json = result as! NSDictionary
+                    let temp = json["data"] as! NSDictionary
+                    
+                    let createdProjectDto = temp["createdProjectDto"] as! NSDictionary
+                    
+                    return CreateProjectData(
+                        isModelExist: (temp["modelExist"]) as! Bool,
+                      name: createdProjectDto["name"] as! String,
+                      createdTime: createdProjectDto["createdTime"] as! String,
+                        model: createdProjectDto["model"] as? String,
+                      projectId: createdProjectDto["projectId"] as! Int)
+                    
                 }
-                return false
+                
+                return CreateProjectData(isModelExist: false, name: "", createdTime: "", model: nil, projectId: 0)
+        
+                
+                
+                    
+                
+                    
+                
             }
     }
     
@@ -370,6 +364,36 @@ class DataService: DataServiceType {
             }
         
        
+    }
+    
+    func check3dModel(imageFileId: Int) -> Observable<CheckProjectData> {
+        urlString = BASE_URL.appending("/check/\(imageFileId)/user")
+ 
+        let jwt = tk.readJwt()
+        guard let jwt = jwt else {
+            print("JWT NIL")
+            return Observable.just(CheckProjectData(isModelExist: false, model: Model()))
+        }
+        
+        var request = URLRequest(url: URL(string: urlString)!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
+        request.timeoutInterval = 10
+        
+        
+        return RxAlamofire
+            .request(request as URLRequestConvertible)
+            .responseString()
+            .asObservable()
+            .map { (res, str) -> CheckProjectData in
+                if let res = try? JSONDecoder().decode(CheckProjectData.self, from: str.data(using: .utf8)!) {
+                    return res
+                }
+                //에러 리턴해야함
+                print("Error..")
+                return CheckProjectData(isModelExist: false, model: Model())
+            }
     }
     
     

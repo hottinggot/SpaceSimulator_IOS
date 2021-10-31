@@ -34,10 +34,7 @@ class ViewCoordinator  {
                 (del.window?.rootViewController as? UINavigationController)?.pushViewController(rootView, animated: true)
             })
             .disposed(by: disposebag)
-        
-
-      
-        
+  
         self.showObjectselectionViewController()
     }
     
