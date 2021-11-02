@@ -17,6 +17,7 @@ class ImageListViewModel {
     let coordinate = ViewCoordinator()
     private var projectName = ""
     private var currenSelectedImageId : Int = 0
+    private var projectId:Int = 0
     
     //output
      var imageListData = BehaviorRelay<[ImageListData]>(value: [])
@@ -33,7 +34,7 @@ class ImageListViewModel {
     init(service : DataServiceType = DataService()){
         self.service = service
         
-        fetchdata()
+//        fetchdata()
         
         currentSelectedImage
             .subscribe(onNext : { [unowned self] imageFileId in
@@ -57,6 +58,7 @@ class ImageListViewModel {
                             .bind { checkProjectData in
                                 if checkProjectData.isModelExist {
                                     waitmodal.removeFromSuperview()
+                                    self.coordinate.start(projectId: self.projectId)
                                 }
                                 else {
                                     ToastView.shared.short(txt_msg: "잠시만 기다려주세요.")
@@ -96,6 +98,11 @@ class ImageListViewModel {
                                     del.window?.addSubview(waitmodal)
                                 }
                                 
+                                else {
+                                    self.projectId = data.projectId
+                                    self.coordinate.start(projectId: data.projectId)
+                                }
+                                
                                 //else: 모델 존재한다면 AR로 이동
                                 
                                 self.coordinate.goback()
@@ -114,7 +121,7 @@ class ImageListViewModel {
     }
     
 
-    private func fetchdata(){
+    func fetchdata(){
         FunctionClass.shared.showdialog(show: true)
         service.getImageList()
             .subscribe(onNext : { [unowned self] data in

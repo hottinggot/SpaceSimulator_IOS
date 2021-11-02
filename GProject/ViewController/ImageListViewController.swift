@@ -17,8 +17,8 @@ class ImageListViewController: UIViewController {
     
     
     var topbox = UIView()
-    
     var imageUploadBtn = UIButton()
+    var capturedImage: UIImage?
     
     
     lazy var imageCv : UICollectionView = {
@@ -33,7 +33,6 @@ class ImageListViewController: UIViewController {
     
     private let viewModel = ImageListViewModel()
     
-    
     private var disposebag = DisposeBag()
     
     
@@ -44,6 +43,10 @@ class ImageListViewController: UIViewController {
         makeimageUploadbtn()
         makecv()
         bindView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.fetchdata()
     }
     
     
@@ -88,6 +91,7 @@ class ImageListViewController: UIViewController {
             })
             .disposed(by: disposebag)
     }
+
     
 }
 extension ImageListViewController {
@@ -128,8 +132,22 @@ extension ImageListViewController {
         imageCv.backgroundColor = .systemFill
     }
     
-    
-    
-    
-    
+
 }
+
+//extension ImageListViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+//    
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        
+//        capturedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+//        
+//        capturedImage = capturedImage?.resize(newWidth: UIScreen.main.bounds.width*3/4)
+////        self.imageView.image = capturedImage
+//        
+//        let view = UploadImageViewController()
+//        view.capturedImage = capturedImage
+//        self.dismiss(animated: true, completion: nil)
+//        self.navigationController?.pushViewController(view, animated: true)
+//    }
+//}
+

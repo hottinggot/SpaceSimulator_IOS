@@ -45,7 +45,8 @@ class UploadImageViewController: UIViewController {
         view.addSubview(imageView)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
+        imageView.image = UIImage(named: "image_default")?.resize(newWidth: UIScreen.main.bounds.width*3/4)
+        imageView.contentMode = .scaleAspectFit
         imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
