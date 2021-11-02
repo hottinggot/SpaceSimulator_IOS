@@ -26,6 +26,9 @@ class ProjectListViewController: UIViewController {
         return cv
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.getProjectList()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

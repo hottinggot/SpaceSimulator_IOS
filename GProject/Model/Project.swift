@@ -43,7 +43,7 @@ struct ImageListData : Codable {
 
 struct CheckProjectData : Codable {
     var isModelExist: Bool
-    var model: Model?
+    var model: String?
 }
 
 struct CreateProjectData : Codable {

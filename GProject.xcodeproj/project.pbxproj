@@ -39,6 +39,7 @@
 		04E5A12826A047A6000DAD7F /* ProjectListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12726A047A6000DAD7F /* ProjectListViewModel.swift */; };
 		04E5A12C26A047F9000DAD7F /* UploadImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12B26A047F9000DAD7F /* UploadImageViewModel.swift */; };
 		04E5A13026A04B7F000DAD7F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5A12F26A04B7F000DAD7F /* LoginViewModel.swift */; };
+		04EE8E5D27316A1000A28B34 /* image_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 04EE8E5C27316A1000A28B34 /* image_default.png */; };
 		2F9CB4B427253A1E00476A90 /* ViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9CB4B327253A1E00476A90 /* ViewCoordinator.swift */; };
 		2F9CB4B62725409200476A90 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9CB4B52725409200476A90 /* Models.scnassets */; };
 		2F9CB4B9272541C600476A90 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F9CB4B7272541C600476A90 /* data.json */; };
@@ -125,6 +126,7 @@
 		04E5A12726A047A6000DAD7F /* ProjectListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewModel.swift; sourceTree = "<group>"; };
 		04E5A12B26A047F9000DAD7F /* UploadImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageViewModel.swift; sourceTree = "<group>"; };
 		04E5A12F26A04B7F000DAD7F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		04EE8E5C27316A1000A28B34 /* image_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_default.png; sourceTree = "<group>"; };
 		2F9CB4B327253A1E00476A90 /* ViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCoordinator.swift; sourceTree = "<group>"; };
 		2F9CB4B52725409200476A90 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 		2F9CB4B7272541C600476A90 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		04435F2F269B16D100030944 /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				04EE8E5C27316A1000A28B34 /* image_default.png */,
 				04328B0127250CED00186DD1 /* addImage.png */,
 				04435F32269B25D200030944 /* kakao_signup_medium_narrow.png */,
 				04435F30269B16EF00030944 /* kakao_login_medium_narrow.png */,
@@ -528,6 +531,7 @@
 				04435F33269B25D200030944 /* kakao_signup_medium_narrow.png in Resources */,
 				2F9CB4BA272541C600476A90 /* coordinates.json in Resources */,
 				0449D805269AF03800BCC781 /* LaunchScreen.storyboard in Resources */,
+				04EE8E5D27316A1000A28B34 /* image_default.png in Resources */,
 				2F9CB4B62725409200476A90 /* Models.scnassets in Resources */,
 				04328B0227250CED00186DD1 /* addImage.png in Resources */,
 				0449D802269AF03800BCC781 /* Assets.xcassets in Resources */,
@@ -847,7 +851,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9Y7C23MX88;
+				DEVELOPMENT_TEAM = V75GP346YD;
 				INFOPLIST_FILE = GProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -867,7 +871,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9Y7C23MX88;
+				DEVELOPMENT_TEAM = V75GP346YD;
 				INFOPLIST_FILE = GProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -208,12 +208,6 @@ class DataService: DataServiceType {
                 }
                 
                 return CreateProjectData(isModelExist: false, name: "", createdTime: "", model: nil, projectId: 0)
-        
-                
-                
-                    
-                
-                    
                 
             }
     }
@@ -409,12 +403,12 @@ class DataService: DataServiceType {
     }
     
     func check3dModel(imageFileId: Int) -> Observable<CheckProjectData> {
-        urlString = BASE_URL.appending("/check/\(imageFileId)/user")
+        urlString = BASE_URL.appending("/check/\(imageFileId)/exist")
  
         let jwt = tk.readJwt()
         guard let jwt = jwt else {
             print("JWT NIL")
-            return Observable.just(CheckProjectData(isModelExist: false, model: Model()))
+            return Observable.just(CheckProjectData(isModelExist: false, model: "모델링중.."))
         }
         
         var request = URLRequest(url: URL(string: urlString)!)
@@ -426,18 +420,25 @@ class DataService: DataServiceType {
         
         return RxAlamofire
             .request(request as URLRequestConvertible)
-            .responseString()
+            .responseJSON()
             .asObservable()
-            .map { (res, str) -> CheckProjectData in
-                if let res = try? JSONDecoder().decode(CheckProjectData.self, from: str.data(using: .utf8)!) {
-                    return res
+            .map { response -> CheckProjectData in
+                
+                if let result = response.value {
+                    let json = result as! NSDictionary
+                    print(json)
+                    let temp = json["data"] as! NSDictionary
+                    
+//                    let projectDto = temp["projectDto"] as! NSDictionary
+                    
+                    return CheckProjectData(isModelExist: temp["modelExist"] as! Bool, model: temp["projectDto"] as? String)
+
                 }
-                //에러 리턴해야함
-                print("Error..")
-                return CheckProjectData(isModelExist: false, model: Model())
+                
+                return CheckProjectData(isModelExist: false, model: "모델링중...")
             }
+            
     }
-    
-    
+
 }
 

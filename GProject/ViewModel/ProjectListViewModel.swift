@@ -19,7 +19,7 @@ class ProjectListViewModel {
     
     init(service: DataServiceType = DataService()) {
         self.service = service
-        getProjectList()
+//        getProjectList()
     }
     
     func getProjectList() {
