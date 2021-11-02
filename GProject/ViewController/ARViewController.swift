@@ -47,6 +47,12 @@ class ARViewController : UIViewController , ARSCNViewDelegate {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         self.view.addSubview(sceneView)
+        let rightBtnItem = UIBarButtonItem()
+        rightBtnItem.title = "저장하기"
+        rightBtnItem.tintColor = .systemBlue
+        
+        self.navigationItem.rightBarButtonItem = rightBtnItem
+        
         sceneView.frame = self.view.frame
         
         sceneView.delegate = self
@@ -58,6 +64,10 @@ class ARViewController : UIViewController , ARSCNViewDelegate {
         setupScene()
         makeimage()
         bindView()
+        
+        
+       
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +81,12 @@ class ARViewController : UIViewController , ARSCNViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        cleanSession()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,18 +95,20 @@ class ARViewController : UIViewController , ARSCNViewDelegate {
     
     
     
+    private func cleanSession(){
+        self.node.childNodes.forEach { node  in
+            node.removeFromParentNode()
+        }
+        image.layer.sublayers?.forEach({ layer  in
+            layer.removeFromSuperlayer()
+        })
+    }
+    
     func setupScene(){
         
         let anchor = ARAnchor(transform: simd_float4x4([1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]))
         sceneView.session.add(anchor: anchor)
         sceneView.autoenablesDefaultLighting = false
-        
-        
-        
-        //        node.position = SCNVector3.init(0, 0, 0)
-        ////        self.sceneView.scene.rootNode.worldPosition = SCNVector3.init(0, 0, 0)
-        //        self.sceneView.scene.rootNode.addChildNode(node)
-        
         
         
     }
@@ -107,9 +125,7 @@ class ARViewController : UIViewController , ARSCNViewDelegate {
     
     func bindView(){
         viewmodel.walls2.subscribe(onNext : { [unowned self] walls in
-            print("something")
             for wall in walls.wall {
-                print("??")
                 self.node.addChildNode(wall)
             }
         })
@@ -119,6 +135,7 @@ class ARViewController : UIViewController , ARSCNViewDelegate {
         viewmodel.coordinates
             .subscribe(onNext : { [unowned self] coordinateArray in
                 for (index, coord) in coordinateArray.enumerated() {
+                    print("coord",coord)
                     let path = UIBezierPath()
                     path.move(to: coord[0])
                     path.addLine(to: coord[1])
@@ -128,12 +145,27 @@ class ARViewController : UIViewController , ARSCNViewDelegate {
                     //UIColor.black.cgColor
                     image.layer.addSublayer(shapeLayer)
                 }
+            })
+            .disposed(by: disposebag)
+        
+        viewmodel.furnitureOutPut
+            .subscribe(onNext : { [unowned self] furnitures in
+                for furniture in furnitures {
+                    furniture.object.load()
+                    furniture.object.isHidden = false
+                    furniture.object.worldPosition = SCNVector3(furniture.point.x, -1.5, furniture.point.y)
+                    self.node.addChildNode(furniture.object)
+                }
                 
             })
             .disposed(by: disposebag)
         
-        
-
+        //action
+        self.navigationItem.rightBarButtonItem?.rx.tap
+            .subscribe(onNext : { [unowned self] in
+                viewmodel.uploadFurnitures()
+            })
+            .disposed(by: disposebag)
     }
     
     
@@ -258,8 +290,8 @@ extension ARViewController {
     private func makeimage(){
         self.view.addSubview(image)
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
-        image.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 30).isActive = true
+        image.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        image.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
         image.widthAnchor.constraint(equalToConstant: 200).isActive = true
         image.heightAnchor.constraint(equalToConstant: 200).isActive = true
         image.backgroundColor = .white
@@ -267,7 +299,7 @@ extension ARViewController {
     private func makecoachingView(){
         sceneView.addSubview(coachingOverlay)
         coachingOverlay.translatesAutoresizingMaskIntoConstraints = false
-        coachingOverlay.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0).isActive = true
+        coachingOverlay.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         coachingOverlay.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
         coachingOverlay.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
         coachingOverlay.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
@@ -300,7 +332,8 @@ extension ARViewController {
         translationMatrix.columns.3.x = cameraRelativePosition.x
         translationMatrix.columns.3.y = cameraRelativePosition.y
         translationMatrix.columns.3.z = cameraRelativePosition.z
-        let modifiedMatrix = simd_mul(transform, translationMatrix)
+        var modifiedMatrix = simd_mul(transform, translationMatrix)
+        modifiedMatrix.columns.3.y = -1.5
         node.simdTransform = modifiedMatrix
         node.eulerAngles = SCNVector3(0, 90, 0)
         let furniturePos = node.worldPosition
@@ -314,7 +347,7 @@ extension ARViewController {
         object.load()
         object.isHidden = false
         virtualObjectInteraction.selectedObject = object
-        self.addChildNode(object,name : object.name ?? "")
+        self.addChildNode(object,name : object.modelName ?? "")
         
         
     }

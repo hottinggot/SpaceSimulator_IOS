@@ -64,7 +64,6 @@ class ImageListViewController: UIViewController {
         }
         
         //output
-
         viewModel.imageListData
             .bind(to: imageCv.rx.items(cellIdentifier: "imagelistCellid", cellType: ImageListCell.self)) { (row, element, cell) in
                 if let url = URL(string: element.url) {
@@ -77,7 +76,6 @@ class ImageListViewController: UIViewController {
             .disposed(by: disposebag)
 
         //action
-        
         imageCv.rx.modelSelected(ImageListData.self)
             .map{ $0.imageFileId }
             .bind(to: viewModel.currentSelectedImage)

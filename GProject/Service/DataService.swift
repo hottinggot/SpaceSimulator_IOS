@@ -92,6 +92,7 @@ class DataService: DataServiceType {
             .map { res, str -> Bool in
                 if let loginRes = try? JSONDecoder().decode(LoginResponseData.self, from: str.data(using: .utf8)!) {
                     
+                    print("loginRes",loginRes.data.token)
                     self.tk.createJwt(value: loginRes.data.token)
                     
                     return true
@@ -328,12 +329,11 @@ class DataService: DataServiceType {
         let jwt = tk.readJwt()
         guard let jwt = jwt else {
             print("JWT NIL")
-            return Observable.just(CoordinateModel(data: [],width: 1,height: 1))
+            return Observable.just(CoordinateModel(data: [],width: 1,height: 1, furnitures: []))
         }
         
         var params: Any
         params = [ : ]
-        print(params)
         
         var request = URLRequest(url: URL(string: urlString)!)
         request.httpMethod = "GET"
@@ -346,24 +346,66 @@ class DataService: DataServiceType {
             .asObservable()
             .map { res, data  ->  CoordinateModel in
                 let json = JSON(data)
-                var model = CoordinateModel(data: [],width: 1,height: 1)
+                var model = CoordinateModel(data: [],width: 1,height: 1, furnitures: [])
                 var temp : [([Int],[Int])] = []
                 
-                var horizontal : Int = json["length"]["horizontal"].intValue
-                var vertical : Int = json["length"]["vertical"].intValue
+                let horizontal : Int = json["data"]["length"]["horizontal"].intValue
+                let vertical : Int = json["data"]["length"]["vertical"].intValue
                 
                 print("json",json)
-                for model in json["wall"].arrayValue {
+                for model in json["data"]["wall"].arrayValue {
                     let start = [model["startPoint"]["x"].intValue, model["startPoint"]["y"].intValue]
                     let end = [model["endPoint"]["x"].intValue, model["endPoint"]["y"].intValue]
                     temp.append((start, end))
                 }
                 
-                model = CoordinateModel(data: temp,width: horizontal,height : vertical)
+                var tempFurniture : [FurniturePostModel] = []
+                
+                for model in json["data"]["furnitures"].arrayValue {
+                    tempFurniture.append(FurniturePostModel(name: model["name"].stringValue,
+                                                            x: model["x"].doubleValue,
+                                                            y: model["y"].doubleValue))
+                }
+                
+                
+                model = CoordinateModel(data: temp,width: horizontal,height : vertical,furnitures: tempFurniture)
                 return model
             }
         
        
+    }
+    
+    func saveProject(projectId : Int,furnitures : [FurniturePostModel]) -> Observable<Bool> {
+        
+        urlString = BASE_URL.appending("/project/save")
+        let jwt = tk.readJwt()
+        guard let jwt = jwt else {
+            print("JWT NIL")
+            return Observable.just(false)
+        }
+        
+        var furnitureValue : [[String : Any]] = []
+        for f in furnitures {
+            var temp : [String : Any] = [:]
+            temp["name"] = f.name
+            temp["x"] = f.x
+            temp["y"] = f.y
+            furnitureValue.append(temp)
+        }
+        let param: Parameters = ["projectId": projectId, "furnitures" : furnitureValue ]
+        print("param",param)
+        let header : HTTPHeaders = ["Content-Type" : "application/json" , "Authorization" : "Bearer \(jwt)" ]
+      
+        return RxAlamofire.request(.post, urlString, parameters: param, encoding: JSONEncoding.default, headers: header, interceptor: nil)
+            .responseData()
+            .asObservable()
+            .map { res, data  ->  Bool in
+                let json = JSON(data)
+                print(json)
+                return json["statusCode"].intValue >= 200 && json["status"].intValue < 400
+            }
+        
+        
     }
     
     func check3dModel(imageFileId: Int) -> Observable<CheckProjectData> {
@@ -394,29 +436,6 @@ class DataService: DataServiceType {
                 print("Error..")
                 return CheckProjectData(isModelExist: false, model: Model())
             }
-    }
-    
-    
-    func getCoordinates() -> Observable<CoordinateModel> {
-        return Observable.create{ seal in
-            guard let path = Bundle.main.path(forResource: "coordinates", ofType: "json") else {
-                seal.onError(NSError(domain: "", code: -1, userInfo: nil))
-                return Disposables.create { }
-            }
-            
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path),options: .mappedIfSafe)
-
-//                seal.onNext(CoordinateModel(data: data))
-                
-            }
-            catch(let error) {
-                seal.onError(error)
-            }
-            
-            return Disposables.create()
-            
-        }
     }
     
     

@@ -85,29 +85,26 @@ class ProjectListViewController: UIViewController {
                     
                 }
                 else {
-                    let imageData = try? Data(contentsOf: URL(string: element.imageFileUri)!)
-                    
-                    if let imageData = imageData {
-                        cell.imageView.image = UIImage(data: imageData)
+                    if let url = URL(string: element.imageFileUri) {
+                        cell.imageView.kf.setImage(with: url)
                     }
                 }
             }
             .disposed(by: disposeBag)
         
-        projectCV.rx.itemSelected
-            .bind { [unowned self] idx in
-                if(idx[1]==0) {
+        projectCV.rx.modelSelected(ProjectListObjectData.self)
+            .subscribe(onNext : { [unowned self] model in
+                if model.imageFileId == -1 || model.projectId == -1 {
                     let view = ImageListViewController()
                     self.navigationController?.pushViewController(view, animated: true)
-
                 }
                 else {
-                    
-                   let projectId = viewModel.getProjectId(index: idx[1])
-                    coordinator.start(projectId: projectId)
+                    coordinator.start(projectId: model.projectId)
                 }
-            }
+            })
             .disposed(by: disposeBag)
+        
+        
     }
     
     private func moveToUploadImagePage() {
