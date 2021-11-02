@@ -14,7 +14,8 @@ class ProjectListViewModel {
     let disposeBag = DisposeBag()
     private let service: DataServiceType!
     
-    var projectListBehaviorSubject = BehaviorRelay<[ProjectListObjectData]>(value: [ProjectListObjectData(projectId: 0, name: "", date: "", imageFileUri: imageIconName, imageFileId: 0)])
+    var projectListBehaviorSubject = BehaviorRelay<[ProjectListObjectData]>(value: [ProjectListObjectData(projectId: -1, name: "", date: "", imageFileUri: imageIconName, imageFileId: -1)])
+    
     
     init(service: DataServiceType = DataService()) {
         self.service = service
@@ -25,7 +26,7 @@ class ProjectListViewModel {
         service.getAllProject()
             .bind { list in
                 
-                self.projectListBehaviorSubject.accept([ProjectListObjectData(projectId: 0, name: "", date: "", imageFileUri: imageIconName, imageFileId: 0)] + list)
+                self.projectListBehaviorSubject.accept([ProjectListObjectData(projectId: -1, name: "", date: "", imageFileUri: imageIconName, imageFileId: -1)] + list)
             }
             .disposed(by: disposeBag)
     }

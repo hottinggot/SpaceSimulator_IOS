@@ -21,23 +21,37 @@ class ViewCoordinator  {
     var disposebag = DisposeBag()
     
     var rootView = ARViewController()
+    let viewmodel = ARViewModel()
     var bottomsheet :  ObjectSelectViewController!
     
     func start(projectId : Int){
-        let viewmodel = ARViewModel()
         viewmodel.coordinator = self
         rootView.viewmodel = viewmodel
         viewmodel.getCoordinates(projectId : projectId)
-            .subscribe(onNext : { [unowned self] in
-                guard let scene = UIApplication.shared.connectedScenes.first else { return }
-                guard let del = scene.delegate as? SceneDelegate else { return }
-                (del.window?.rootViewController as? UINavigationController)?.pushViewController(rootView, animated: true)
+            .map { [unowned self] data,width,height -> (Bool, String ) in
+                viewmodel.setUpScene(data: data,width: width,height: height)
+                if width == -1 {
+                    return (false,"도면의 가로 길이를 구하지 못하였습니다")
+                }
+                if height == -1 {
+                    return (false,"도면의 세로 길이를 구하지 못하였습니다")
+                }
+                return (!(data.count == 0),"잠시 후 시도해 주세요")
+            }
+            .subscribe(onNext : { [unowned self] done,msg in
+                if done {
+                    guard let scene = UIApplication.shared.connectedScenes.first else { return }
+                    guard let del = scene.delegate as? SceneDelegate else { return }
+                    (del.window?.rootViewController as? UINavigationController)?.pushViewController(rootView, animated: true)
+                }
+                else {
+                    ToastView.shared.short(txt_msg: msg)
+                }
             })
             .disposed(by: disposebag)
   
         self.showObjectselectionViewController()
     }
-    
     
     
     private func showObjectselectionViewController(){

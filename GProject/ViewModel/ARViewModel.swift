@@ -19,20 +19,18 @@ import ARKit
 class ARViewModel: NSObject {
 
     //datas
-    private var furnitureDatasToPost :  [FurniturePostModel] = []
+    private var furnitureDatasToPost :  [FurniturePostModel] = [] // -> 현재 추가한 가구 서버에서 내려받은 가구 다 합쳐서 올려야함
+    private var projectId : Int = 0
     
     //input
-    var furnitureInput = PublishSubject<(name : String, point : CGPoint)>()
+    var furnitureInput = PublishSubject<(name : String, point : CGPoint)>() //-> 현재 추가하려는 가구
     
     
     
     //output
-    
     struct walls2Model {
         var wall : [SCNNode]
     }
-    
-    
     lazy var randomcolors : [UIColor] = {
         var colors : [UIColor] = []
         for _ in 0...200 {
@@ -41,10 +39,11 @@ class ARViewModel: NSObject {
         
         return colors
     }()
-    
-    
     var walls2 = BehaviorRelay<walls2Model>.init(value: walls2Model(wall: []))
-    var coordinates = BehaviorRelay<[[CGPoint]]>(value: [])
+    var coordinates = BehaviorRelay<[[CGPoint]]>(value: []) // -> 우상단 이미지 위한것
+    var furnitureOutPut = BehaviorRelay<[(point : CGPoint,object : VirtualObject)]>(value: []) //-> 서버에서 내려받은 가구
+    
+    
     
     private var service : DataServiceType!
     
@@ -68,45 +67,66 @@ class ARViewModel: NSObject {
     
     
     
-    func getCoordinates(projectId : Int) -> Observable<Void> {
-        return Observable.create{ [unowned self] seal in
-            service.getProjectDetail(projectId: projectId)
-                .subscribe(onNext : { [unowned self] data in
-                    if data.coordinates.count == 0 {
-                        coordinator?.goback()
-                        return
+    func getCoordinates(projectId : Int) -> Observable<([([Int],[Int])],height : CGFloat, width : CGFloat)> {
+        self.projectId = projectId
+        return service.getProjectDetail(projectId: projectId)
+            .map{ [unowned self] data -> ([([Int],[Int])],height : CGFloat, width : CGFloat) in
+                if data.coordinates.count == 0 {
+                    coordinator?.goback()
+                    return ([],-1,-1)
+                }
+                
+                print("width",data.width)
+                print("height",data.height)
+                if data.width <= 100 {
+                    coordinator?.goback()
+                    return ([],-1,0)
+                }
+                if data.height <= 100 {
+                    coordinator?.goback()
+                    return ([],0,-1)
+                }
+                
+                
+                
+                //우상단 이미지
+                var widthScalefactor : CGFloat = 1
+                var heightScalefactor : CGFloat = 1
+                let maxX : CGFloat = CGFloat(data.coordinates.map{ Double($0.0[0]) }.max() ?? 100.0)
+                widthScalefactor = maxX <= 200 ? 1 : 200 / maxX
+                let maxy : CGFloat = CGFloat(data.coordinates.map{ Double($0.0[1]) }.max() ?? 100.0)
+                heightScalefactor = maxy <= 200 ? 1 : 200 / maxy
+                let coordArray = data.coordinates.map{ [CGPoint(x : (CGFloat($0.0[0]) * widthScalefactor)  , y : (CGFloat($0.0[1]) * heightScalefactor ) ) ,
+                                                        CGPoint(x : (CGFloat($0.1[0]) * widthScalefactor) , y : (CGFloat($0.1[1]) * heightScalefactor) )]}
+                
+                
+                var tempcoord : [[CGPoint]] = []
+                for index in 0...coordArray.count - 1 {
+                    tempcoord.append(coordArray[index])
+                }
+                self.coordinates.accept(tempcoord)
+                
+                //실제 3d 모델링
+                var temp :[([Int],[Int])] = []
+                
+                for index in 0...data.coordinates.count - 1 {
+                    temp.append(data.coordinates[index])
+                }
+                
+                //가구 배치
+                var tempFurnitures : [(CGPoint,VirtualObject)] = []
+                for object in VirtualObject.availableObjects {
+                    for furniture in data.furnitures {
+                        if object.modelName == furniture.name {
+                            tempFurnitures.append((CGPoint(x: furniture.x, y: furniture.y), object))
+                            furnitureDatasToPost.append(FurniturePostModel(name: furniture.name, x: furniture.x, y: furniture.y))
+                        }
                     }
-                    for coord in data.coordinates {
-                        print("coord",coord)
-                    }
-                    
-                    
-                    
-                    let coordArray = data.coordinates.map{ [CGPoint(x : (($0.0[0]) / data.width)  , y : ($0.0[1] / data.height ) ) ,
-                                                            CGPoint(x : (($0.1[0]) / data.width) , y : ($0.1[1] / data.height) )]}
-                    
-                    
-                    var tempcoord : [[CGPoint]] = []
-                    for index in 0...coordArray.count - 1 {
-                        tempcoord.append(coordArray[index])
-                    }
-                    self.coordinates.accept(tempcoord)
-                    
-                    
-//                    let sampledata = [([0,0],[0,-1])]
-                    
-                    var temp :[([Int],[Int])] = []
-                    
-                    for index in 0...data.coordinates.count - 1 {
-                        temp.append(data.coordinates[index])
-                    }
-                    self.setUpScene(data: temp)
-                    seal.onNext(())
-                })
-                .disposed(by: disposebag)
-            
-            return Disposables.create()
-        }
+                }
+                
+                furnitureOutPut.accept(tempFurnitures)
+                return (temp,data.width,data.height)
+            }
     }
     
     
@@ -115,51 +135,60 @@ class ARViewModel: NSObject {
 //        coordinator?.showObjectselectionViewController()
     }
     
-    private func setUpScene(data : [([Int],[Int])]) {
+    func setUpScene(data : [([Int],[Int])],width : CGFloat, height : CGFloat) {
+        
+        print("data.count",data.count)
         
         
         var maxX : CGFloat = CGFloat(data.map{ Double($0.0[0]) }.max() ?? 100.0)
         maxX = maxX <= 1 ? 1 : maxX
         var maxy : CGFloat = CGFloat(data.map{ Double($0.0[1]) }.max() ?? 100.0)
         maxy = maxy <= 1 ? 1 : maxy
-        print("maxX",maxX)
-        print("maxY",maxy)
         
-        let scaleFactor : CGFloat = 10
+        let widthScale : CGFloat = width / 1000
+        let heightScale : CGFloat = height / 1000
         var walls : [SCNNode] = []
         
         for (index, coords) in data.enumerated() {
-            let firstPoint = CGPoint(x: (CGFloat(coords.0[0]) / maxX) * scaleFactor,
-                                     y: (CGFloat(coords.0[1]) / maxy) * scaleFactor).clean
-            let lastPoint = CGPoint(x: (CGFloat(coords.1[0]) / maxX) * scaleFactor,
-                                    y: (CGFloat(coords.1[1]) / maxy) * scaleFactor).clean
-            print("firstpoint",firstPoint)
-            print("lastpoint",lastPoint)
-            
+            let firstPoint = CGPoint(x: (CGFloat(coords.0[0]) / maxX) * widthScale,
+                                     y: (CGFloat(coords.0[1]) / maxy) * heightScale).clean
+            let lastPoint = CGPoint(x: (CGFloat(coords.1[0]) / maxX) * widthScale,
+                                    y: (CGFloat(coords.1[1]) / maxy) * heightScale).clean
             let midPoint = self.calculateMidPoint(lhs: firstPoint, rhs: lastPoint)
-            print("midPoint",midPoint)
             let length = self.calculateLength(lhs: firstPoint, rhs: lastPoint)
-            print("length",length)
             let incline : CGFloat = self.calculateIncline(lhs: firstPoint, rhs: lastPoint)
-                //
-
-            print("incline",incline.degreesToRadians)
-            let wall = createdMyBox(isDoor: false,length: length,color: randomcolors[index])
             
-            wall.worldPosition = SCNVector3.init(midPoint.x - (0.5 * scaleFactor), 0, midPoint.y - (1 * scaleFactor))
+            let wall = createdMyBox(isDoor: false,length: length,color: self.randomcolors[index])
+            
+            wall.worldPosition = SCNVector3.init(midPoint.x - (0.5 * widthScale), 0, midPoint.y - (1 * heightScale))
             wall.eulerAngles = SCNVector3.init(0, incline.degreesToRadians, 0)
             
             
-
-            print("======================")
+            
             walls.append(wall)
         }
         
         
-        print("walls2 all appended")
         self.walls2.accept(walls2Model(wall: walls))
         
     }
+    
+    
+    func uploadFurnitures(){
+        print("uploadFurnitures pressed")
+        service.saveProject(projectId: projectId, furnitures: self.furnitureDatasToPost)
+            .subscribe(onNext : { done in
+                if done {
+                    ToastView.shared.short(txt_msg: "가구가저장 되었습니다.")
+                }
+                else {
+                    ToastView.shared.short(txt_msg: "잠시 후 시도해주세요")
+                }
+                
+            })
+            .disposed(by: disposebag)
+    }
+    
     
 }
 extension ARViewModel {
@@ -175,9 +204,9 @@ extension ARViewModel {
     }
     
     private func calculateLength(lhs  : CGPoint, rhs : CGPoint) -> CGFloat {
-        
-        print("(lhs.x - rhs.x)",(lhs.x - rhs.x))
-        print("(lhs.y - rhs.y )",(lhs.y - rhs.y ))
+//
+//        print("(lhs.x - rhs.x)",(lhs.x - rhs.x))
+//        print("(lhs.y - rhs.y )",(lhs.y - rhs.y ))
         return sqrt( ((lhs.x - rhs.x)*(lhs.x - rhs.x)) +  ((lhs.y - rhs.y )*(lhs.y - rhs.y)) )
         
     }
@@ -187,8 +216,8 @@ extension ARViewModel {
         
         let originX = rhs.x - lhs.x
         let originY = rhs.y - lhs.y
-        print("originX",originX)
-        print("originY",originY)
+//        print("originX",originX)
+//        print("originY",originY)
         
         if abs(originX) <= 0.1 && abs(originY) <= 0.1 {
             if abs(originX) > abs(originY) {
@@ -206,9 +235,9 @@ extension ARViewModel {
         }
 
         let bearingRadians = atan2f(Float(originY), Float(originX))
-        print("bearingRadians",bearingRadians)
-        var bearingDegrees = CGFloat(bearingRadians).radiansToDegree
-        print("bearingDegrees",bearingDegrees)
+//        print("bearingRadians",bearingRadians)
+        let bearingDegrees = CGFloat(bearingRadians).radiansToDegree
+//        print("bearingDegrees",bearingDegrees)
 //        while bearingDegrees < 0 {
 //            bearingDegrees += 360
 //        }

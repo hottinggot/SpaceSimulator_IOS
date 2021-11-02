@@ -35,7 +35,8 @@ protocol DataServiceType {
     func withdrawal() -> Observable<Bool>
     func check3dModel(imageFileId: Int) -> Observable<CheckProjectData>
     
-    //MockUp test
-    func getCoordinates() -> Observable<CoordinateModel>
+    
     func getProjectDetail(projectId : Int) -> Observable<CoordinateModel>
+    func saveProject(projectId : Int,furnitures : [FurniturePostModel]) -> Observable<Bool>
+    
 }
