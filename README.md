@@ -4,4 +4,4 @@
 
 ### 구조도
 
-![구조](https://user-images.githubusercontent.com/59634669/163717077-dc113867-96e8-4bfd-8bc0-829314d1f0cd.png){: width="50%" height="50%"}
+<img src="https://user-images.githubusercontent.com/59634669/163717077-dc113867-96e8-4bfd-8bc0-829314d1f0cd.png" width="50%" height="50%">
