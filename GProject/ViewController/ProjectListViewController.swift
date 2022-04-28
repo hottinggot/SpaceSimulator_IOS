@@ -88,7 +88,7 @@ class ProjectListViewController: UIViewController {
                     
                 }
                 else {
-                    if let url = URL(string: element.imageFileUri) {
+                    if let url = URL(string: element.imageFileUri ?? "") {
                         cell.imageView.kf.setImage(with: url)
                     }
                 }
@@ -102,7 +102,7 @@ class ProjectListViewController: UIViewController {
                     self.navigationController?.pushViewController(view, animated: true)
                 }
                 else {
-                    coordinator.start(projectId: model.projectId)
+                    coordinator.start(projectId: model.projectId ?? 0)
                 }
             })
             .disposed(by: disposeBag)

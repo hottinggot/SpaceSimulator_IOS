@@ -25,6 +25,19 @@
 		0449D800269AF03700BCC781 /* GProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0449D7FE269AF03700BCC781 /* GProject.xcdatamodeld */; };
 		0449D802269AF03800BCC781 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0449D801269AF03800BCC781 /* Assets.xcassets */; };
 		0449D805269AF03800BCC781 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0449D803269AF03800BCC781 /* LaunchScreen.storyboard */; };
+		0475375E281674B800E4300A /* UserEndpointCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0475375D281674B800E4300A /* UserEndpointCases.swift */; };
+		047537602816752400E4300A /* ProjectEndpointCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0475375F2816752400E4300A /* ProjectEndpointCases.swift */; };
+		047537632818CC6500E4300A /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047537622818CC6500E4300A /* EndPoint.swift */; };
+		047537652818D14D00E4300A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047537642818D14D00E4300A /* NetworkError.swift */; };
+		047537672818D16D00E4300A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047537662818D16D00E4300A /* Service.swift */; };
+		047537692818FFCC00E4300A /* NeighborEndpointCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047537682818FFCC00E4300A /* NeighborEndpointCases.swift */; };
+		0475376B2818FFEF00E4300A /* ProjectShareEndpointCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0475376A2818FFEF00E4300A /* ProjectShareEndpointCases.swift */; };
+		0475376E281910AD00E4300A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0475376D281910AD00E4300A /* UserService.swift */; };
+		04753770281914A800E4300A /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0475376F281914A800E4300A /* ProjectService.swift */; };
+		04753772281914B800E4300A /* NeighborService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04753771281914B800E4300A /* NeighborService.swift */; };
+		04753774281914D600E4300A /* ProjectShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04753773281914D600E4300A /* ProjectShareService.swift */; };
+		04753776281A61AF00E4300A /* Neighbor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04753775281A61AF00E4300A /* Neighbor.swift */; };
+		04753778281A655800E4300A /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04753777281A655800E4300A /* Share.swift */; };
 		047946E92711B1070092C880 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047946E82711B1070092C880 /* RegisterViewModel.swift */; };
 		04813D4926D5DDDC0083A3EE /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04813D4826D5DDDC0083A3EE /* CollectionViewCell.swift */; };
 		04813D4B26D683AA0083A3EE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04813D4A26D683AA0083A3EE /* RegisterViewController.swift */; };
@@ -110,6 +123,19 @@
 		0449D801269AF03800BCC781 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0449D804269AF03800BCC781 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0449D806269AF03800BCC781 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0475375D281674B800E4300A /* UserEndpointCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpointCases.swift; sourceTree = "<group>"; };
+		0475375F2816752400E4300A /* ProjectEndpointCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEndpointCases.swift; sourceTree = "<group>"; };
+		047537622818CC6500E4300A /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		047537642818D14D00E4300A /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		047537662818D16D00E4300A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		047537682818FFCC00E4300A /* NeighborEndpointCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborEndpointCases.swift; sourceTree = "<group>"; };
+		0475376A2818FFEF00E4300A /* ProjectShareEndpointCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectShareEndpointCases.swift; sourceTree = "<group>"; };
+		0475376D281910AD00E4300A /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		0475376F281914A800E4300A /* ProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
+		04753771281914B800E4300A /* NeighborService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborService.swift; sourceTree = "<group>"; };
+		04753773281914D600E4300A /* ProjectShareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectShareService.swift; sourceTree = "<group>"; };
+		04753775281A61AF00E4300A /* Neighbor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neighbor.swift; sourceTree = "<group>"; };
+		04753777281A655800E4300A /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 		047946E82711B1070092C880 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		04813D4826D5DDDC0083A3EE /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		04813D4A26D683AA0083A3EE /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +290,39 @@
 			path = GProject;
 			sourceTree = "<group>";
 		};
+		0475375C2816749400E4300A /* EndpointCases */ = {
+			isa = PBXGroup;
+			children = (
+				0475375D281674B800E4300A /* UserEndpointCases.swift */,
+				0475375F2816752400E4300A /* ProjectEndpointCases.swift */,
+				047537682818FFCC00E4300A /* NeighborEndpointCases.swift */,
+				0475376A2818FFEF00E4300A /* ProjectShareEndpointCases.swift */,
+			);
+			path = EndpointCases;
+			sourceTree = "<group>";
+		};
+		047537612818CC5400E4300A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0417652B26A6D72600E2C4F7 /* TokenUtils.swift */,
+				047537622818CC6500E4300A /* EndPoint.swift */,
+				047537642818D14D00E4300A /* NetworkError.swift */,
+				047537662818D16D00E4300A /* Service.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		0475376C2819106400E4300A /* DataServices */ = {
+			isa = PBXGroup;
+			children = (
+				0475376D281910AD00E4300A /* UserService.swift */,
+				0475376F281914A800E4300A /* ProjectService.swift */,
+				04753771281914B800E4300A /* NeighborService.swift */,
+				04753773281914D600E4300A /* ProjectShareService.swift */,
+			);
+			path = DataServices;
+			sourceTree = "<group>";
+		};
 		04AE242726B78C8B005F11F2 /* GProjectUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +338,8 @@
 				04E5A11F26A037FF000DAD7F /* User.swift */,
 				04E5A12326A03ABE000DAD7F /* Project.swift */,
 				0417653B26B38E5E00E2C4F7 /* Table.swift */,
+				04753775281A61AF00E4300A /* Neighbor.swift */,
+				04753777281A655800E4300A /* Share.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -321,9 +382,11 @@
 		04E5A11D26A0375E000DAD7F /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				0475376C2819106400E4300A /* DataServices */,
+				047537612818CC5400E4300A /* Core */,
+				0475375C2816749400E4300A /* EndpointCases */,
 				04E5A12126A038CB000DAD7F /* DataServiceType.swift */,
 				04E5A12526A0405F000DAD7F /* DataService.swift */,
-				0417652B26A6D72600E2C4F7 /* TokenUtils.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -609,6 +672,7 @@
 				2F9CB4B427253A1E00476A90 /* ViewCoordinator.swift in Sources */,
 				0417652826A50E9900E2C4F7 /* UploadImageViewController.swift in Sources */,
 				2FCE86662725397E002100FA /* ImageListViewModel.swift in Sources */,
+				04753776281A61AF00E4300A /* Neighbor.swift in Sources */,
 				04328B042725304600186DD1 /* SettingViewController.swift in Sources */,
 				2FCE867E272539B9002100FA /* VirtualObjectInteraction.swift in Sources */,
 				04E5A12C26A047F9000DAD7F /* UploadImageViewModel.swift in Sources */,
@@ -617,6 +681,7 @@
 				2F9CB4BE272550B300476A90 /* ProjectNameInputPopUp.swift in Sources */,
 				2FCE868C272539C5002100FA /* FunctionClass.swift in Sources */,
 				2FCE868E272539C5002100FA /* ThumbnailGenerator.swift in Sources */,
+				04753778281A655800E4300A /* Share.swift in Sources */,
 				04E5A12626A0405F000DAD7F /* DataService.swift in Sources */,
 				0417652C26A6D72600E2C4F7 /* TokenUtils.swift in Sources */,
 				2FCE8671272539AF002100FA /* ImageListCell.swift in Sources */,
@@ -628,10 +693,14 @@
 				04E5A12226A038CB000DAD7F /* DataServiceType.swift in Sources */,
 				2FCE866C27253996002100FA /* ImageListViewController.swift in Sources */,
 				0417652626A5052C00E2C4F7 /* TableViewCell.swift in Sources */,
+				0475376B2818FFEF00E4300A /* ProjectShareEndpointCases.swift in Sources */,
 				04E5A13026A04B7F000DAD7F /* LoginViewModel.swift in Sources */,
+				0475376E281910AD00E4300A /* UserService.swift in Sources */,
 				04813D4926D5DDDC0083A3EE /* CollectionViewCell.swift in Sources */,
 				2FCE868D272539C5002100FA /* ToastView.swift in Sources */,
 				04813D4B26D683AA0083A3EE /* RegisterViewController.swift in Sources */,
+				047537602816752400E4300A /* ProjectEndpointCases.swift in Sources */,
+				04753774281914D600E4300A /* ProjectShareService.swift in Sources */,
 				2FCE8672272539AF002100FA /* ObjectSelectionCell.swift in Sources */,
 				0449D7F6269AF03700BCC781 /* AppDelegate.swift in Sources */,
 				04E5A12026A037FF000DAD7F /* User.swift in Sources */,
@@ -639,15 +708,22 @@
 				04328B062725346400186DD1 /* SettingViewModel.swift in Sources */,
 				2FCE868F272539C5002100FA /* Extensions.swift in Sources */,
 				2FCE86672725397E002100FA /* ObjectCellModel.swift in Sources */,
+				0475375E281674B800E4300A /* UserEndpointCases.swift in Sources */,
+				04753772281914B800E4300A /* NeighborService.swift in Sources */,
+				047537632818CC6500E4300A /* EndPoint.swift in Sources */,
 				2FCE86652725397E002100FA /* ObjectSelectViewModel.swift in Sources */,
 				0449D7F8269AF03700BCC781 /* SceneDelegate.swift in Sources */,
+				04753770281914A800E4300A /* ProjectService.swift in Sources */,
+				047537692818FFCC00E4300A /* NeighborEndpointCases.swift in Sources */,
 				047946E92711B1070092C880 /* RegisterViewModel.swift in Sources */,
 				04435F35269B56F700030944 /* ProjectListViewController.swift in Sources */,
 				04E5A12426A03ABE000DAD7F /* Project.swift in Sources */,
 				2FCE8684272539B9002100FA /* FocusSquare.swift in Sources */,
 				2FCE8681272539B9002100FA /* VirtualObject.swift in Sources */,
+				047537672818D16D00E4300A /* Service.swift in Sources */,
 				2FCE866D27253996002100FA /* ARViewController.swift in Sources */,
 				0449D800269AF03700BCC781 /* GProject.xcdatamodeld in Sources */,
+				047537652818D14D00E4300A /* NetworkError.swift in Sources */,
 				2FCE868B272539C5002100FA /* Utilities.swift in Sources */,
 				04E5A12826A047A6000DAD7F /* ProjectListViewModel.swift in Sources */,
 			);

@@ -114,7 +114,7 @@ class LoginViewController: UIViewController {
         
         viewModel.userData
             .bind { userDataRes in
-                if(!userDataRes.authorities.isEmpty) {
+                if(!(userDataRes.data?.authorities?.isEmpty ?? false)) {
                     self.moveToMainPage()
                 }
                 else {

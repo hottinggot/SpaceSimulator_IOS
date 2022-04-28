@@ -12,29 +12,19 @@ import RxCocoa
 
 class ProjectListViewModel {
     let disposeBag = DisposeBag()
-    private let service: DataServiceType!
     
     var projectListBehaviorSubject = BehaviorRelay<[ProjectListObjectData]>(value: [ProjectListObjectData(projectId: -1, name: "", date: "", imageFileUri: imageIconName, imageFileId: -1)])
     
-    
-    init(service: DataServiceType = DataService()) {
-        self.service = service
-//        getProjectList()
-    }
-    
     func getProjectList() {
-        service.getAllProject()
-            .bind { list in
+        ProjectService.shared.getShowProjectList()
+            .bind { [weak self] response in
                 
-                self.projectListBehaviorSubject.accept([ProjectListObjectData(projectId: -1, name: "", date: "", imageFileUri: imageIconName, imageFileId: -1)] + list)
+                self?.projectListBehaviorSubject.accept([ProjectListObjectData(projectId: -1, name: "", date: "", imageFileUri: imageIconName, imageFileId: -1)] + (response.data ?? []))
             }
             .disposed(by: disposeBag)
     }
     
-    
-    
-    
     func getProjectId(index : Int) -> Int {
-        return projectListBehaviorSubject.value[index].projectId
+        return projectListBehaviorSubject.value[index].projectId ?? 0
     }
 }

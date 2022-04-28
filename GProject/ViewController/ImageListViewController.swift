@@ -69,7 +69,7 @@ class ImageListViewController: UIViewController {
         //output
         viewModel.imageListData
             .bind(to: imageCv.rx.items(cellIdentifier: "imagelistCellid", cellType: ImageListCell.self)) { (row, element, cell) in
-                if let url = URL(string: element.url) {
+                if let url = URL(string: element.url ?? "") {
                     cell.image.kf.setImage(with: url)
                 }
                 else {
@@ -80,7 +80,7 @@ class ImageListViewController: UIViewController {
 
         //action
         imageCv.rx.modelSelected(ImageListData.self)
-            .map{ $0.imageFileId }
+            .map{ $0.imageFileId ?? 0 }
             .bind(to: viewModel.currentSelectedImage)
             .disposed(by: disposebag)
         
