@@ -8,8 +8,8 @@
 import Foundation
 
 enum ProjectShareEndpointCases: EndPoint {
-    case getShowNeighborProject
-    case getDownloadProject
+    case getShowNeighborProject(neighborId: Int)
+    case getDownloadProject(projectId: Int)
 }
 
 extension ProjectShareEndpointCases {
@@ -25,17 +25,17 @@ extension ProjectShareEndpointCases {
 
 extension ProjectShareEndpointCases {
     var baseURLString: String {
-        return "http://192.168.0.114:8080"
+        return "http://192.168.0.114:8080/project"
     }
 }
 
 extension ProjectShareEndpointCases {
     var path: String {
         switch self {
-        case .getShowNeighborProject:
-            return baseURLString + "/neighbor/3/findAll"
-        case .getDownloadProject:
-            return baseURLString + "/project/1/download"
+        case .getShowNeighborProject(let neighborId):
+            return baseURLString + "/\(neighborId)/findAll"
+        case .getDownloadProject(let projectId):
+            return baseURLString + "/\(projectId)/download"
         }
     }
 }

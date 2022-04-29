@@ -8,17 +8,20 @@
 import Foundation
 
 enum NeighborEndpointCases: EndPoint {
-    case getSearchNeighbor
+    case getSearchNeighbor(nickname: String)
+    case getNeighborApplicationList
     case getNeighborList
-    case postRequestNeighbor
-    case deleteNeighbor
-    case postApproveNeighbor
+    case postRequestNeighbor(neighbor: Neighbor)
+    case deleteNeighbor(neighborId: Int)
+    case postApproveNeighbor(neighborDetail: NeighborDetail)
 }
 
 extension NeighborEndpointCases {
     var httpMethod: String {
         switch self {
         case .getSearchNeighbor:
+            return "GET"
+        case .getNeighborApplicationList:
             return "GET"
         case .getNeighborList:
             return "GET"
@@ -41,14 +44,16 @@ extension NeighborEndpointCases {
 extension NeighborEndpointCases {
     var path: String {
         switch self {
-        case .getSearchNeighbor:
-            return baseURLString + "/nick/search"
+        case .getSearchNeighbor(let nickname):
+            return baseURLString + "/\(nickname)/search"
         case .getNeighborList:
-            return baseURLString + "/findAll"
+            return baseURLString + "/list"
+        case .getNeighborApplicationList:
+            return baseURLString + "/application/list"
         case .postRequestNeighbor:
             return baseURLString + "/request"
-        case .deleteNeighbor:
-            return baseURLString + "/1/delete"
+        case .deleteNeighbor(let neighborId):
+            return baseURLString + "/\(neighborId)/delete"
         case .postApproveNeighbor:
             return baseURLString + "/approve"
         }
@@ -73,10 +78,18 @@ extension NeighborEndpointCases {
 extension NeighborEndpointCases {
     var body: [String : Any]? {
         switch self {
-        case .postRequestNeighbor:
-            return [:]
-        case .postApproveNeighbor:
-            return [:]
+        case .postRequestNeighbor(let neighbor):
+            return [
+                "nickname" : neighbor.nickname ?? "" ,
+                "userId" : neighbor.userId ?? 0
+            ]
+        case .postApproveNeighbor(let neighborDetail):
+            return [
+                "nickname" : neighborDetail.nickname ?? "" ,
+                "neighborId" : neighborDetail.neighborId ?? 0,
+                "userId" : neighborDetail.userId ?? 0,
+                "isApprove" : neighborDetail.isApprove ?? false
+            ]
         default: return [:]
         }
     }

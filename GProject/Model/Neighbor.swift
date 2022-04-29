@@ -49,5 +49,5 @@ struct NeighborDetail: Codable {
     var nickname: String?
     var neighborId: Int?
     var userId: Int?
-    var approved: Bool?
+    var isApprove: Bool?
 }
