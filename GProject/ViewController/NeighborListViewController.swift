@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class NeighborListViewController: UIViewController {
+class NeighborListViewController: BaseViewController {
     
     var disposeBag = DisposeBag()
     let viewModel = NeighborListViewModel()
@@ -35,7 +35,7 @@ class NeighborListViewController: UIViewController {
         .then {
             $0.text = "Neighbors' Project"
             $0.font = UIFont.systemFont(ofSize: 27.0, weight: .bold)
-            $0.textColor = .white
+            $0.textColor = UIColor.textColor
         }
     
     let searchButton = UIButton()
@@ -64,11 +64,12 @@ class NeighborListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.bindNeighborList()
     }
     
     func configureView() {
-        view.backgroundColor = UIColor.appColor(.backgroundBlack)
+        view.backgroundColor = UIColor.backgroundColor
         self.navigationController?.navigationBar.isHidden = true
     }
     

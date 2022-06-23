@@ -12,7 +12,7 @@ import Alamofire
 import Then
 import SnapKit
 
-class UploadImageViewController: UIViewController {
+class UploadImageViewController: BaseViewController {
     
     var imageView = UIImageView()
     var uploadButton = UIButton()
@@ -33,12 +33,16 @@ class UploadImageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.appColor(.backgroundBlack)
+        view.backgroundColor = UIColor.backgroundColor
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
         
         setView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     private func setView() {

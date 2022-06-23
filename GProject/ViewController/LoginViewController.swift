@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     
     var viewModel = LoginViewModel()
     let disposeBag = DisposeBag()
@@ -38,11 +38,15 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.appColor(.backgroundBlack)
+        view.backgroundColor = UIColor.backgroundColor
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         setStackView()
         bindViewModel()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     func setStackView() {
@@ -65,7 +69,7 @@ class LoginViewController: UIViewController {
     
     private func setAppNameLabel() {
         appNameLabel.text = "3D home"
-        appNameLabel.textColor = .white
+        appNameLabel.textColor = UIColor.textColor
         appNameLabel.font = UIFont.boldSystemFont(ofSize: 50)
 //        appNameLabel.font = UIFont(name: "ArialMT", size: 40)
         appNameLabel.textAlignment = .center
@@ -93,7 +97,7 @@ class LoginViewController: UIViewController {
         loginButton.setContentHuggingPriority(.required, for: .vertical)
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         loginButton.setTitle("로그인", for: .normal)
-        loginButton.titleLabel?.textColor = .white
+        loginButton.titleLabel?.textColor = UIColor.textColor
         loginButton.layer.cornerRadius = 5
         loginButton.titleEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         loginButton.backgroundColor = UIColor.appColor(.buttonBlue)

@@ -23,7 +23,7 @@ class ProjectHeaderReusableView: UICollectionReusableView {
         .then {
             $0.text = "My Project"
             $0.font = UIFont.systemFont(ofSize: 20.0, weight: .bold)
-            $0.textColor = .white
+            $0.textColor = UIColor.textColor
         }
     
     override init(frame: CGRect) {

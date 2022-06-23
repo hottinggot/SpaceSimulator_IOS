@@ -16,6 +16,9 @@ class SearchBarView: UIView {
         }
 
     var searchField = UITextField()
+        .then {
+            $0.textColor = .white
+        }
 
     var searchButton = UIButton()
         .then {

@@ -8,63 +8,141 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SnapKit
+import Then
 
-class SettingViewController: UIViewController {
+enum DarkMode {
+    case lightMode
+    case darkMode
+}
+
+class SettingViewController: BaseViewController {
     
-    var tableView = UITableView()
-    let disposeBag = DisposeBag()
+    let backButton = UIButton()
+        .then {
+            $0.setImage(UIImage(named: "Back")?.resizedImage(size: CGSize(width: 8, height: 14)), for: .normal)
+        }
+    
+    let titleLabel = UILabel()
+        .then {
+            $0.text = "Setting"
+            $0.textColor = UIColor.textColor
+            $0.font = UIFont.systemFont(ofSize: 30.0, weight: .bold)
+        }
+    
+    let tableView = UITableView()
+        .then {
+            $0.backgroundColor = .clear
+        }
+    
+    var disposeBag = DisposeBag()
     let viewModel = SettingViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-        addTableView()
-        bindTableView()
+        view.backgroundColor = UIColor.backgroundColor
+        addView()
+        bindView()
 
     }
     
-    private func addTableView() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    private func addView() {
+        
+        view.addSubview(backButton)
+        backButton.snp.makeConstraints {
+            $0.left.equalToSuperview().offset(20.0)
+            $0.top.equalToSuperview().offset(70.0)
+        }
+        
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.left.equalTo(backButton.snp.right).offset(20.0)
+            $0.centerY.equalTo(backButton.snp.centerY)
+        }
         
         view.addSubview(tableView)
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(backButton.snp.bottom).offset(30.0)
+            $0.left.equalToSuperview().offset(20.0)
+            $0.right.equalToSuperview().offset(-20.0)
+            $0.bottom.equalToSuperview().offset(-30.0)
+        }
         
     }
     
-    private func bindTableView() {
+    private func bindView() {
+        backButton.rx.tap
+            .bind { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        Observable.of(["계정 정보 보기", "비밀번호 변경", "회원 탈퇴", "로그아웃"]).bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (index:Int, element: String, cell: UITableViewCell) in
+        Observable.of(["다크모드","계정 정보 보기", "비밀번호 변경", "회원 탈퇴", "로그아웃", "앱 초기화"]).bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (index:Int, element: String, cell: UITableViewCell) in
+            cell.selectionStyle = .none
             cell.textLabel?.text = element
+            cell.textLabel?.textColor = UIColor.textColor
+            cell.backgroundColor = .clear
         }
         .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
-            .bind { item in
+            .bind { [weak self] item in
                 switch item.item {
                 case 0:
-                    self.moveToPersonalInfoPage()
+                    //다크모드
+                    self?.setDarkMode()
+                    break
+                    
                 case 1:
-                    self.moveToCorrectPasswordPage()
+                    //계정 정보 보기
+                    self?.moveToPersonalInfoPage()
+                    break
+                    
                 case 2:
-                    self.alertMsgWithdrawal("회원 탈퇴", message: "회원을 탈퇴하시겠습니까?")
-//                case 3:
-//                    self.alertMsg("로그아웃", message: "로그아웃 하시겠습니까?")
+                    //비밀번호 변경
+                    self?.moveToCorrectPasswordPage()
+                    break
+                    
+                case 3:
+                    //회원 탈퇴
+                    self?.alertMsgWithdrawal("회원 탈퇴", message: "회원을 탈퇴하시겠습니까?")
+                    break
+                    
+                case 4:
+                    //로그아웃
+                    self?.alertMsgWithdrawal("로그아웃", message: "로그아웃 하시겠습니까?")
+                    break
+                    
+                case 5:
+                    //앱 초기화
+                    break
                     
                 default:
-                    self.alertMsgWithdrawal("회원 탈퇴", message: "회원을 탈퇴하시겠습니까?")
-//                    self.alertMsg("다시 시도", message: "다시 시도해주세요")
+                    self?.alertMsgWithdrawal("다시 시도", message: "다시 시도해주세요")
+                    break
                 }
-                    
-            
             }
             .disposed(by: disposeBag)
+    }
+    
+    private func setDarkMode() {
+        print("다크모드 설정1 \(UserDefaults.standard.string(forKey: "Appearance")  ?? "Err") ")
+        if self.overrideUserInterfaceStyle == .light {
+            UserDefaults.standard.set("Dark", forKey: "Appearance")
+        } else {
+            UserDefaults.standard.set("Light", forKey: "Appearance")
+        }
+        print("다크모드 설정2 \(UserDefaults.standard.string(forKey: "Appearance")  ?? "Err2") ")
+        
+        self.viewWillAppear(true)
+        
     }
     
     private func moveToPersonalInfoPage() {

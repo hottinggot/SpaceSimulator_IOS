@@ -13,7 +13,7 @@ import SnapKit
 import Then
 import RxDataSources
 
-class NeighborProjectListViewController: UIViewController {
+class NeighborProjectListViewController: BaseViewController {
 
     let viewModel = NeighborProjectListViewModel()
     
@@ -77,12 +77,13 @@ class NeighborProjectListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.getProjectList()
     }
     
     private func configureView() {
         navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = UIColor.appColor(.backgroundBlack)
+        view.backgroundColor = UIColor.backgroundColor
         
         titleLabel.text = "\(viewModel.neighbor.value.nickname ?? "NaN")'s Project"
         

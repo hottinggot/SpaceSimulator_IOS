@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class NeighborSearchViewController: UIViewController {
+class NeighborSearchViewController: BaseViewController {
     
     let viewModel = NeighborListViewModel()
     var disposeBag = DisposeBag()
@@ -53,9 +53,13 @@ class NeighborSearchViewController: UIViewController {
         layoutView()
         bindView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
     func configureView() {
-        view.backgroundColor = UIColor.appColor(.backgroundBlack)
+        view.backgroundColor = UIColor.backgroundColor
         searchListTableView.allowsSelection = false
     }
     

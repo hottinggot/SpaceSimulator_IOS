@@ -33,6 +33,7 @@
 		04335E97281C2FCE00BA765C /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04335E96281C2FCE00BA765C /* UIImage+Ext.swift */; };
 		04335E99281C306D00BA765C /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 04335E98281C306D00BA765C /* Search.png */; };
 		04335E9B281C318100BA765C /* Notice.png in Resources */ = {isa = PBXBuildFile; fileRef = 04335E9A281C318100BA765C /* Notice.png */; };
+		04354ABC2864238700B135DB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04354ABB2864238700B135DB /* BaseViewController.swift */; };
 		04435F31269B16EF00030944 /* kakao_login_medium_narrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04435F30269B16EF00030944 /* kakao_login_medium_narrow.png */; };
 		04435F33269B25D200030944 /* kakao_signup_medium_narrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04435F32269B25D200030944 /* kakao_signup_medium_narrow.png */; };
 		04435F35269B56F700030944 /* ProjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04435F34269B56F700030944 /* ProjectListViewController.swift */; };
@@ -146,6 +147,7 @@
 		04335E96281C2FCE00BA765C /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		04335E98281C306D00BA765C /* Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Search.png; sourceTree = "<group>"; };
 		04335E9A281C318100BA765C /* Notice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notice.png; sourceTree = "<group>"; };
+		04354ABB2864238700B135DB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		04435F30269B16EF00030944 /* kakao_login_medium_narrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakao_login_medium_narrow.png; sourceTree = "<group>"; };
 		04435F32269B25D200030944 /* kakao_signup_medium_narrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakao_signup_medium_narrow.png; sourceTree = "<group>"; };
 		04435F34269B56F700030944 /* ProjectListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewController.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				04335E82281BAD1300BA765C /* NeighborNoticeViewController.swift */,
 				04335E84281BAD3B00BA765C /* NeighborSearchViewController.swift */,
 				04335E8B281BF2C800BA765C /* NeighborProjectListViewController.swift */,
+				04354ABB2864238700B135DB /* BaseViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -740,6 +743,7 @@
 				04335E8A281BE7B500BA765C /* UIColor+Ext.swift in Sources */,
 				0417652826A50E9900E2C4F7 /* UploadImageViewController.swift in Sources */,
 				2FCE86662725397E002100FA /* ImageListViewModel.swift in Sources */,
+				04354ABC2864238700B135DB /* BaseViewController.swift in Sources */,
 				04753776281A61AF00E4300A /* Neighbor.swift in Sources */,
 				04328B042725304600186DD1 /* SettingViewController.swift in Sources */,
 				2FCE867E272539B9002100FA /* VirtualObjectInteraction.swift in Sources */,

@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class PersonalInfoViewController: UIViewController {
+class PersonalInfoViewController: BaseViewController {
 
     let viewModel = PersonalInfoViewModel()
     let tableView = UITableView()
@@ -17,11 +17,15 @@ class PersonalInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.backgroundColor
         
         addTableView()
         bindView()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     private func addTableView() {
@@ -39,6 +43,7 @@ class PersonalInfoViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         viewModel.infoSubject
             .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (index:Int, element: String, cell: UITableViewCell) in
+                cell.textLabel?.textColor = UIColor.textColor
                 cell.textLabel?.text = element
                 cell.selectionStyle = .none
             }

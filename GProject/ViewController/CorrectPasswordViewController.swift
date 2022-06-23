@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class CorrectPasswordViewController: UIViewController {
+class CorrectPasswordViewController: BaseViewController {
 
     let viewModel = CorrectPasswordViewModel()
     let disposeBag = DisposeBag()
@@ -34,10 +34,14 @@ class CorrectPasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.backgroundColor
         makeView()
         bindView()
     
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     func makeView() {

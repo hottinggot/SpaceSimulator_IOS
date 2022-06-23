@@ -42,6 +42,10 @@ extension UIColor {
 
 
 extension UIColor {
+    
+    static let backgroundColor = UIColor(named: "backgroundColor")
+    static let textColor = UIColor(named: "textColor")
+    
     static func appColor(_ name: Colors) -> UIColor {
         switch name {
         case .backgroundBlack:

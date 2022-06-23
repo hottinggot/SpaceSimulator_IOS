@@ -38,7 +38,7 @@ class ProjectCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         
         self.addSubview(titleLabel)
-        titleLabel.textColor = .white
+        titleLabel.textColor = UIColor.textColor
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: imageView.leftAnchor,constant: 3).isActive = true

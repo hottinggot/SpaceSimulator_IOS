@@ -13,7 +13,7 @@ import SnapKit
 import Then
 import RxDataSources
 
-class ProjectListViewController: UIViewController {
+class ProjectListViewController: BaseViewController {
   
     let coordinator = ViewCoordinator()
     
@@ -23,7 +23,7 @@ class ProjectListViewController: UIViewController {
     let titleLabel = UILabel()
         .then {
             $0.text = "3D Modeling"
-            $0.textColor = .white
+            $0.textColor = UIColor.textColor
             $0.font = UIFont.systemFont(ofSize: 30.0, weight: .bold)
         }
     
@@ -78,6 +78,7 @@ class ProjectListViewController: UIViewController {
     })
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.getProjectList()
     }
 
@@ -92,7 +93,7 @@ class ProjectListViewController: UIViewController {
     }
     
     private func configureView() {
-        view.backgroundColor = UIColor.appColor(.backgroundBlack)
+        view.backgroundColor = UIColor.backgroundColor
         navigationController?.navigationBar.isHidden = true
 //        let leftBtnItem = UIBarButtonItem()
 //        leftBtnItem.title = "내 정보"
@@ -149,6 +150,12 @@ class ProjectListViewController: UIViewController {
             .subscribe(onNext : { [unowned self] model in
                     coordinator.start(projectId: model.projectId ?? 0)
             })
+            .disposed(by: disposeBag)
+        
+        settingButton.rx.tap
+            .bind { [weak self] _ in
+                self?.moveToSettingVC()
+            }
             .disposed(by: disposeBag)
     }
 

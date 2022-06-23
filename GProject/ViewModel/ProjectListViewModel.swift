@@ -21,7 +21,7 @@ class ProjectListViewModel {
     
     func getProjectList() {
         ProjectService.shared.getShowProjectList()
-            .bind { [weak self] response in
+            .subscribe( onNext: { [weak self] response in
                 
 //                self?.projectListBehaviorSubject.accept([ProjectListObjectData(projectId: -1, name: "", date: "", imageFileUri: imageIconName, imageFileId: -1)] + (response.data ?? []))
                 
@@ -31,7 +31,9 @@ class ProjectListViewModel {
                         items: response.data ?? [])
                     ]
                 )
-            }
+            }, onError: { [weak self] error in
+                print(error)
+            })
             .disposed(by: disposeBag)
     }
     

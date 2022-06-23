@@ -14,7 +14,7 @@ import SnapKit
 import Then
 
 
-class ImageListViewController: UIViewController {
+class ImageListViewController: BaseViewController {
     
     var topbox = UIView()
     var imageUploadBtn = UIButton()
@@ -28,7 +28,7 @@ class ImageListViewController: UIViewController {
     let titleLabel = UILabel()
         .then {
             $0.text = "업로드한 이미지"
-            $0.textColor = .white
+            $0.textColor = UIColor.textColor
             $0.font = UIFont.systemFont(ofSize: 27.0, weight: .bold)
         }
     
@@ -49,7 +49,7 @@ class ImageListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.appColor(.backgroundBlack)
+        self.view.backgroundColor = UIColor.backgroundColor
         maketopbox()
         makeimageUploadbtn()
         makeBackButton()
@@ -59,6 +59,7 @@ class ImageListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.fetchdata()
     }
     

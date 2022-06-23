@@ -17,7 +17,7 @@ class NeighborTableViewCell: UITableViewCell {
     
     var nicknameLabel = UILabel()
         .then {
-            $0.textColor = .white
+            $0.textColor = UIColor.textColor
             $0.font = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
         }
     

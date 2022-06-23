@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class NeighborNoticeViewController: UIViewController {
+class NeighborNoticeViewController: BaseViewController {
 
     var disposeBag = DisposeBag()
     let viewModel = NeighborListViewModel()
@@ -50,7 +50,7 @@ class NeighborNoticeViewController: UIViewController {
         .then {
             $0.text = "Neighbor Request"
             $0.font = UIFont.systemFont(ofSize: 27.0, weight: .bold)
-            $0.textColor = .white
+            $0.textColor = UIColor.textColor
         }
     
     let appliedNeighborListTableView = UITableView()
@@ -68,11 +68,12 @@ class NeighborNoticeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.bindAppliedNeighborList()
     }
     
     func configureView() {
-        view.backgroundColor = UIColor.appColor(.backgroundBlack)
+        view.backgroundColor = UIColor.backgroundColor
         self.navigationController?.navigationBar.isHidden = true
     }
     

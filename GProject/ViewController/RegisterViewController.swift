@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: BaseViewController {
     
     let disposeBag = DisposeBag()
     
@@ -47,10 +47,14 @@ class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.backgroundColor
         setRegisterStack()
         bindViewModel()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     private func setRegisterStack() {
