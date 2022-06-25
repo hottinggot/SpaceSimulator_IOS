@@ -13,6 +13,13 @@ struct LoginRequestDTO: Codable {
     var password: String?
 }
 
+struct RegisterRequestDTO: Codable {
+    var email: String?
+    var password: String?
+    var nickname: String?
+    var birth: String?
+}
+
 //Response
 
 struct UserInfoResponse: Decodable {

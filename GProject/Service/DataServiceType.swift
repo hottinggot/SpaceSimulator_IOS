@@ -18,7 +18,7 @@ enum LoginType {
 
 protocol DataServiceType {
     
-    func addUser(userInfo: UserInfo) -> Observable<Bool>
+    func addUser(userInfo: RegisterRequestDTO) -> Observable<Bool>
 //    func loginUser(userInfo: UserInfo) -> Observable<Bool>
 //    func getMe() -> Observable<UserData>
     

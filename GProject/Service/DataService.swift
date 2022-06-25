@@ -22,20 +22,20 @@ import SwiftyJSON
 class DataService: DataServiceType {
 
     
-    let BASE_URL = "http://3.38.95.177:8080"
+    let BASE_URL = "http://192.168.0.114:8080"
     var urlString: String!
     let disposeBag = DisposeBag()
     let tk = TokenUtils()
     
     
-    func addUser(userInfo: UserInfo) -> Observable<Bool> {
+    func addUser(userInfo: RegisterRequestDTO) -> Observable<Bool> {
         urlString = BASE_URL.appending("/api/signup")
         
         var request = URLRequest(url: URL(string: urlString)!)
         var params : Any
 
         
-        params = ["email": "userInfo", "password": "password", "nickname": "nickname","birth": "birth"]
+        params = ["email": userInfo.email, "password": userInfo.password, "nickname": userInfo.nickname,"birth": userInfo.birth]
     
         
         request.httpMethod = "POST"

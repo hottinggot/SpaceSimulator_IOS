@@ -59,7 +59,7 @@ class RegisterViewController: BaseViewController {
     
     private func setRegisterStack() {
         
-        titleLabel.text = "회원가입"
+        titleLabel.text = "Sign Up"
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "ArialMT", size: 40)
         
@@ -70,7 +70,7 @@ class RegisterViewController: BaseViewController {
         passwordTF.placeholder = "password"
         
         nickNameTF.borderStyle = .roundedRect
-        nickNameTF.placeholder = "닉네임"
+        nickNameTF.placeholder = "nickname"
         
         birthLabel.text = "생년월일"
         datePicker.datePickerMode = .date
@@ -78,12 +78,12 @@ class RegisterViewController: BaseViewController {
         submitButton.setTitle("확인", for: .normal)
         submitButton.titleLabel?.tintColor = .white
         submitButton.layer.cornerRadius = 5
-        submitButton.backgroundColor = .black
+        submitButton.backgroundColor = UIColor.appColor(.buttonBlue)
         
         backButton.setTitle("취소", for: .normal)
         backButton.titleLabel?.tintColor = .white
         backButton.layer.cornerRadius = 5
-        backButton.backgroundColor = .black
+        backButton.backgroundColor = UIColor.appColor(.buttonBlue)
         
         view.addSubview(registerVStack)
         
@@ -91,6 +91,8 @@ class RegisterViewController: BaseViewController {
         registerVStack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         registerVStack.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         registerVStack.widthAnchor.constraint(equalToConstant: view.frame.width - 100).isActive = true
+        
+        registerVStack.setCustomSpacing(50, after: titleLabel)
         
     }
     

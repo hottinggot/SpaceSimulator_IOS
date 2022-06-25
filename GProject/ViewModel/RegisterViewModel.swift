@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import KakaoSDKUser
 
 class RegisterViewModel {
     let disposeBag = DisposeBag()
@@ -18,7 +19,7 @@ class RegisterViewModel {
     let nicknameTextRelay = BehaviorRelay<String>(value: "")
     let birthDateRelay = PublishRelay<Date>()
     
-    var requestingUser = UserInfo(nickname: "", birth: "")
+    var requestingUser = RegisterRequestDTO()
     
     var validation = false
     
@@ -47,6 +48,8 @@ class RegisterViewModel {
             .map { email, passwd, nickname, birth in
                 if emailTest.evaluate(with: email) && passwd.count > 6 {
                 
+                    self.requestingUser.email = email
+                    self.requestingUser.password = passwd
                     self.requestingUser.nickname = nickname
                     self.requestingUser.birth = dateFormatter.string(from: birth)
                     return true
